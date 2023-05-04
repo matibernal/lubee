@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lubee.iml" filepath="$PROJECT_DIR$/.idea/lubee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lubee.iml" filepath="$PROJECT_DIR$/lubee.iml" />
     </modules>
   </component>
 </project>
