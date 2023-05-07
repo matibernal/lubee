@@ -15,7 +15,11 @@ public static void Menu() {
 	int a=0;
 	do {
 		
-	int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta /n Numero 1: si es Cliente /n Numero 2: si es Administrador /n Numero 3: Si es Maestro Mayor de Obra"));
+	int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta " +
+			"/n Numero 1: si es Cliente " +
+			"/n Numero 2: si es Administrador " +
+			"/n Numero 3: si es Recursos Humanos" +
+			"/n Numero 3: Si es Maestro Mayor de Obra"));
 	switch (op) {
 	case 1:
 		// if (Ingreso cliente is true) {
@@ -31,12 +35,19 @@ public static void Menu() {
 			
 			break;
 	case 3:
-		// if (Ingreso Maestro mayor de obra is true) {
+		// if (Ingreso Recursos humanos is true) {
 		
 		// }
 		
 		
 		break;
+
+	case 4:
+		// if (Ingreso Maestro mayor de obra is true) {
+
+		// }
+
+			break;
 
 	default:
 		JOptionPane.showMessageDialog(null, "La opcion ingresada es incorrecta. Por favor ingrese una opcion valida");
