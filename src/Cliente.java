@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente{
 
     private int idCliente;
@@ -5,6 +8,7 @@ public class Cliente{
     private String nombre;
     private String apellido;
     private String numeroDeCelular;
+    private static List<Cliente> listaClientes = new ArrayList<>();
 
     public Cliente(int idCliente, int dni, String nombre, String apellido, String numeroDeCelular) {
         this.idCliente = idCliente;
@@ -12,6 +16,7 @@ public class Cliente{
         this.nombre = nombre;
         this.apellido = apellido;
         this.numeroDeCelular = numeroDeCelular;
+        listaClientes.add(this);
     }
 
     public int getIdCliente() {
@@ -52,5 +57,9 @@ public class Cliente{
 
     public void setNumeroDeCelular(String numeroDeCelular) {
         this.numeroDeCelular = numeroDeCelular;
+    }
+
+    public static List<Cliente> getListaClientes() {
+        return listaClientes;
     }
 }
