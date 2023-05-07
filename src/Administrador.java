@@ -65,6 +65,12 @@ public class Administrador{
         return null;
     }
 
+    public void calcularPresupuesto(){
+        int mat=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de materiales utilizados en la obra"));
+        int presupuesto= mat* 20;
+        JOptionPane.showMessageDialog(null, "El presupuesto por la cantidad de materiales utilizados es: " + presupuesto);
+    }
+
 }
 
 

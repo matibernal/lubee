@@ -50,7 +50,7 @@ public class Main {
 
                                         break;
                                     case 2:
-                                        //calcular presupuesto
+                                        administrador.calcularPresupuesto();
                                         break;
                                     case 3:
                                         //Crear un proyecto
