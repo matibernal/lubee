@@ -8,6 +8,9 @@ public class Cliente{
     private String nombre;
     private String apellido;
     private String numeroDeCelular;
+    private int idProyecto;
+    private int presupuesto;
+    private int materialesNecesarios;
     private static List<Cliente> listaClientes = new ArrayList<>();
 
     public Cliente(int idCliente, int dni, String nombre, String apellido, String numeroDeCelular) {
@@ -57,6 +60,30 @@ public class Cliente{
 
     public void setNumeroDeCelular(String numeroDeCelular) {
         this.numeroDeCelular = numeroDeCelular;
+    }
+
+    public int getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(int idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public int getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(int presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
+    public int getMaterialesNecesarios() {
+        return materialesNecesarios;
+    }
+
+    public void setMaterialesNecesarios(int materialesNecesarios) {
+        this.materialesNecesarios = materialesNecesarios;
     }
 
     public static List<Cliente> getListaClientes() {

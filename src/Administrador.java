@@ -65,10 +65,32 @@ public class Administrador{
         return null;
     }
 
-    public void calcularPresupuesto(){
-        int mat=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de materiales utilizados en la obra"));
-        int presupuesto= mat* 20;
+    public void calcularPresupuesto() {
+        int mat = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de materiales utilizados en la obra"));
+        int presupuesto = mat * 20;
         JOptionPane.showMessageDialog(null, "El presupuesto por la cantidad de materiales utilizados es: " + presupuesto);
+    }
+
+
+    public void crearProyecto(int idCliente){
+
+        Cliente cliente = buscarClienteId(idCliente);
+        if (cliente != null) {
+            JOptionPane.showMessageDialog(null, "El proyecto es para el cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+            int idProyecto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un ID para registrar el proyecto"));
+            cliente.setIdProyecto(idProyecto);
+            JOptionPane.showMessageDialog(null, "Al proyecto se le asigno el número: " + cliente.getIdProyecto());
+            int cantMat = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de materiales para calcular el presupuesto"));
+            cliente.setPresupuesto(cantMat*20);
+            cliente.setMaterialesNecesarios(cantMat);
+            JOptionPane.showMessageDialog(null, "El proyecto de " + cliente.getNombre() + " " + cliente.getApellido() +
+                    "\n\nID: " + cliente.getIdProyecto()
+                    + "\nCantidad de materiales: " +cliente.getMaterialesNecesarios()
+                    + "\nPresupuesto total: " + cliente.getPresupuesto() + "$");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No se encontró un cliente con el ID ingresado.");
+        }
     }
 
 }
