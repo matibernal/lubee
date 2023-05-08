@@ -52,8 +52,7 @@ public class Main {
                             int opAdm = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere usar " +
                                     "\n 1- Llamar al cliente " +
                                     "\n 2- Calcular el presupuesto" +
-                                    "\n 3- Crear un proyecto " +
-                                    "\n 4- Contactar proveedores"));
+                                    "\n 3- Crear un proyecto " ));
                             switch(opAdm) {
                                 case 1:
                                     int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente a llamar:"));
@@ -77,7 +76,13 @@ public class Main {
                     break;
 
                 case 2:
-                    // (RRHH CODIGO)
+                    int opRrhhnv = 0;
+                    do {
+                        int opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere realizar" +
+                                "\n 1-Agregar Trabajador" +
+                                "\n 2-Quitar Trabajador"));
+
+                    } while (opRrhhnv !=1);
                     break;
 
                 case 3:

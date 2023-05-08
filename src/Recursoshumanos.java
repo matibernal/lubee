@@ -10,6 +10,8 @@ public class Recursoshumanos {
         private String sectorTrabajo;
 
 
+
+
     public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
