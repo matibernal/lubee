@@ -15,6 +15,12 @@ public class Main {
         Cliente Gamaliel = new Cliente(1,12345678,"Gamaliel", "Quiroz", "2346132");
         Menu();
 
+        Recursoshumanos Juan = new Recursoshumanos(1,"Juan","Lopez","Obrero");
+        Recursoshumanos Pablo = new Recursoshumanos(2,"Pablo","Rodriguez","Obrero");
+        Recursoshumanos Lucio = new Recursoshumanos(3,"Lucio","Perez","Maestro Mayor");
+        Recursoshumanos Marcos = new Recursoshumanos(4,"Marcos","Suarez", "Operario");
+
+
     }
 
     public static void Menu() {
@@ -23,7 +29,10 @@ public class Main {
         int a = 0;
         do {
 
-            int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta \n Numero 1: si es Administrador \n Numero 2: si es RRHH \n Numero 3: Si es Maestro Mayor de Obra"));
+            int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta " +
+                    "\n Numero 1: si es Administrador " +
+                    "\n Numero 2: si es RRHH " +
+                    "\n Numero 3: Si es Maestro Mayor de Obra"));
             switch (op) {
                 case 1:
                     int idAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de admin: "));
@@ -40,8 +49,11 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Bienvenido Administrador " + administradorEncontrado.getNombre() + " " + administradorEncontrado.getApellido());
                         int opAdmnv = 0;
                         do {
-                            int opAdm = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere usar \n 1- Llamar al cliente \n 2- Calcular el presupuesto" +
-                                    "\n 3- Crear un proyecto \n 4- Contactar proveedores"));
+                            int opAdm = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere usar " +
+                                    "\n 1- Llamar al cliente " +
+                                    "\n 2- Calcular el presupuesto" +
+                                    "\n 3- Crear un proyecto " +
+                                    "\n 4- Contactar proveedores"));
                             switch(opAdm) {
                                 case 1:
                                     int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente a llamar:"));
