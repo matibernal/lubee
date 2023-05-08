@@ -2,6 +2,7 @@ package lubee.src;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Maquinaria {
     private String tipo;
@@ -84,6 +85,49 @@ public class ControlMaquinas {
         int cantidadDisponibles = control.contarMaquinasDisponibles();
         return System.out.println("Cantidad de máquinas disponibles: " + cantidadDisponibles
                 ;
+
+        
+
+        public class Main {
+
+            public static void main(String[] args) {
+
+                JOptionPane.showMessageDialog(null, "  Bienvenido a LUBEE  ");
+                JOptionPane.showMessageDialog(null, "  La empresa numero 1 en construcciones  ");
+
+                List<Maquina> maquinas = new ArrayList<>();
+                int opcion;
+                do {
+                    String menu = "Menú:\n"
+                            + "1. Agregar máquina\n"
+                            + "2. Ver cantidad de máquinas disponibles\n"
+                            + "3. Salir";
+                    opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Programa de máquinas"));
+                    switch (opcion) {
+                        case 1:
+                            String tipo = JOptionPane.showInputDialog(null, "Ingrese el tipo de la máquina:", "Agregar máquina");
+                            String patente = JOptionPane.showInputDialog(null, "Ingrese la patente de la máquina:", "Agregar máquina");
+                            int cantidadDisponible = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de máquinas disponibles:", "Agregar máquina"));
+                            boolean disponible = Boolean.parseBoolean(JOptionPane.showInputDialog(null, "Ingrese si la máquina está disponible (true/false):", "Agregar máquina"));
+                            maquinas.add(new Maquina(tipo, patente, cantidadDisponible, disponible));
+                            JOptionPane.showMessageDialog(null, "Máquina agregada exitosamente", "Agregar máquina", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case 2:
+                            ControlMaquinas control = new ControlMaquinas(maquinas);
+                            int cantidadDisponibles = control.contarMaquinasDisponibles();
+                            JOptionPane.showMessageDialog(null, "Cantidad de máquinas disponibles: " + cantidadDisponibles, "Ver máquinas disponibles", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(null, "Saliendo del programa...", "Programa de máquinas", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Opción inválida", "Programa de máquinas", JOptionPane.ERROR_MESSAGE);
+                            break;
+                    }
+                } while (opcion != 3);
+            }
+        }
+
     }
 
 
