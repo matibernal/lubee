@@ -1,40 +1,14 @@
 public class Usuario {
 
-    private int idUsuario;
-    private String tipoUsuario;
-    private int clave;
     private String nombre;
     private String apellido;
+    private String dni;
+    private String clave;
 
-    public Usuario(int idUsuario, String tipoUsuario, int clave, String nombre, String apellido) {
-        this.idUsuario = idUsuario;
-        this.tipoUsuario = tipoUsuario;
-        this.clave = clave;
+    public Usuario(String nombre, String apellido, String dni, String clave) {
         this.nombre = nombre;
         this.apellido = apellido;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public int getClave() {
-        return clave;
-    }
-
-    public void setClave(int clave) {
+        this.dni = dni;
         this.clave = clave;
     }
 
@@ -54,16 +28,33 @@ public class Usuario {
         this.apellido = apellido;
     }
 
+    public String getDni() {
+        return dni;
+    }
 
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public boolean login (String dni, String clave) {
+        return this.dni.equeals(dni) && this.clave.equals(clave);
+    }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "idUsuario=" + idUsuario +
-                ", tipoUsuario='" + tipoUsuario + '\'' +
-                ", clave=" + clave +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", clave='" + clave + '\'' +
                 '}';
     }
 }
