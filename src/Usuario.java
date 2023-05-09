@@ -54,7 +54,9 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-
+    public boolean login (String dni, String clave) {
+        return this.dni.equals(dni) && this.clave.equeals(clave);
+    }
 
     @Override
     public String toString() {
