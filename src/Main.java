@@ -1,4 +1,4 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.util.LinkedList;
 
 public class Main {
@@ -29,6 +29,8 @@ public class Main {
 
 
         Menu(admin,  operario,  rrhh,  maestro,  material, maquinaria, obrero, plano, obra, listaProyectos, ObrerosEnObra);
+
+
     }
 
     private static void Menu() {
@@ -186,11 +188,7 @@ public class Main {
 
                         }
 
-
-
                     }
-
-
 
                     break;
 

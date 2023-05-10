@@ -1,4 +1,7 @@
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
+
 
 public class Recursoshumanos {
 
@@ -11,13 +14,15 @@ public class Recursoshumanos {
 
 
 
-    public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo, LinkedList<Recursoshumanos> listaTrabajadores) {
+    public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.sectorTrabajo = sectorTrabajo;
-        listaTrabajadores.add(this);
 
+    }
+
+    public Recursoshumanos(int idUsuario, String juan, String lopez, String obrero, LinkedList<Recursoshumanos> listaTrabajadores) {
     }
 
     public int getIdUsuario() {
@@ -51,16 +56,16 @@ public class Recursoshumanos {
         this.apellido = apellido;
         }
 
-        public static List<Recursoshumanos> getListaTrabajadores() {
-        return listaTrabajadores;
-        }
-
         public void añadirTrabajador (Recursoshumanos trabajador) {
-            listaTrabajadores.add(trabajador)
+
+        //listaTrabajadores.add(trabajador)
+
         }
 
         public void quitarTrabajador(Recursoshumanos trabajador) {
-            listaTrabajadores.remove(trabajador)
+
+        //listaTrabajadores.remove(trabajador)
+
         }
 
     @Override
