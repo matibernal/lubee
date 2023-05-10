@@ -1,86 +1,130 @@
-package proyecto_sof;
-
-import java.awt.Component;
-import java.awt.Container;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-public class Plano {
-	private int id_plano;
-	private String cliente;
-	private String Nombre;
-	
-	public String getNombre() {
-		return Nombre;
-	}
-	public int getId_plano() {
-		return id_plano;
-	}
-	public void setId_plano(int id_plano) {
-		this.id_plano = id_plano;
-	}
-	public String getCliente() {
-		return cliente;
-	}
-	public void setNombre(String nombre) {
-		Nombre = nombre;
-	}
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
-	
-	
-	public Plano(int id_plano, String cliente, String planos) {
-		super();
-		this.id_plano = id_plano;
-		this.cliente = cliente;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Plano [id_plano=" + id_plano + ", cliente=" + cliente + ", Nombre=" + Nombre + "]";
-	}
-	
-	public static List<Plano> realizarPlano() {
-	    List<Plano> listaPlanos = new ArrayList<>();
-	    
-	    // creación de los planos y agregado a la lista
-	    Plano plano1 = new Plano(213,"ricardo ford","");
-	    listaPlanos.add(plano1);
-	    
-	    Plano plano2 = new Plano(214,"Marcelo Tinneli","");
-	    listaPlanos.add(plano2);
-	    
-	    Plano plano3 = new Plano(215,"Julian weich","");
-	    listaPlanos.add(plano3);
-	    
-	    return listaPlanos;
-	}
-	
-	
-	public void eliminarPlano() {
-
-	}
-	
-	public Plano buscarPlano(int idPlano, Plano[] listaPlanos) {
-	    for (Plano p : listaPlanos) {
-	        if (p.getId_plano() == idPlano) {
-	            return p;
-	        }
-	    }
-	    return null;
-	}
-	
-	public static List<Plano> realizarPlano2() {
+import javax.swing.JOptionPane;
+public class Plano  implements Serializable{
+    public List<Plano> realizarPlano() {
         List<Plano> listaPlanos = new ArrayList<>();
-        listaPlanos.add(new Plano(1, "Plano 1", "Cliente 1"));
-        listaPlanos.add(new Plano(2, "Plano 2", "Cliente 2"));
-        listaPlanos.add(new Plano(3, "Plano 3", "Cliente 3"));
-        listaPlanos.add(new Plano(4, "Plano 4", "Cliente 4"));
-        listaPlanos.add(new Plano(5, "Plano 5", "Cliente 5"));
+        listaPlanos.add(new Plano("Plano 1", "Palermo Soho", 1000.0, 2000.0));
+        listaPlanos.add(new Plano("Plano 2", "Quilmes", 1500.0, 2500.0));
+        listaPlanos.add(new Plano("Plano 3", "Avenida Corrientes", 2000.0, 3000.0));
+        listaPlanos.add(new Plano("Plano 4", "Rivadavia", 2000.0, 3000.0));
+        listaPlanos.add(new Plano("Plano 5", "Alcorta", 2000.0, 3000.0));
         return listaPlanos;
+
     }
-	
-	
+    private static int nextId = 1;
+    private int id;
+    private String nombre;
+    private String descripcion;
+    private String ubicacion;
+    private double ancho;
+    private double alto;
+    private ArrayList<String> obrerosAsignados;
+
+    public Plano(String nombre, String descripcion, String ubicacion, double ancho, double alto) {
+        this.id = nextId++;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.ubicacion = ubicacion;
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    public Plano() {
+    }
+
+    public Plano(String nombre, String descripcion, double ancho, double alto) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        Plano.nextId = nextId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(double ancho) {
+        this.ancho = ancho;
+    }
+
+    public double getAlto() {
+        return alto;
+    }
+
+    public void setAlto(double alto) {
+        this.alto = alto;
+    }
+
+    public ArrayList<String> getObrerosAsignados() {
+        return obrerosAsignados;
+    }
+
+    public void setObrerosAsignados(ArrayList<String> obrerosAsignados) {
+        this.obrerosAsignados = obrerosAsignados;
+    }
+
+    public Plano(String descripcion, String ubicacion, double ancho, double alto, int id) {
+        super();
+        this.descripcion = descripcion;
+        this.ubicacion = ubicacion;
+        this.ancho = ancho;
+        this.alto = alto;
+        this.id = id;
+        this.obrerosAsignados = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + "\nDescripciÃ³n: " + descripcion +
+                "\nAncho: " + ancho + "\nAlto: " + alto;
+    }
+
+    public void eliminarPlano() {
+        // TODO Auto-generated method stub
+
+    }
+
+
 }

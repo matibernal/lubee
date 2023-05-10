@@ -7,17 +7,36 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Maestro_obra {
-	 private List<Obrero> listaObreros = new ArrayList<>();
-	private List<Plano> listaPlanos= new ArrayList<>();
-	private ArrayList<proyecto_obra> listaProyectos; 
-	
 	private String nombre;
 	private int id_empleado;
-	private String contrase�a;
+	private String contraseña;
 	private String sector_trabajo;
 	private int cantidadobreros;
 	private String Plano;
-	
+	private ArrayList<String> materiales;
+
+
+	public Maestro_obra() {
+		materiales = new ArrayList<>();
+		materiales.add("Ladrillos");
+		materiales.add("Cemento");
+		materiales.add("Hierro");
+		materiales.add("Acero");
+		materiales.add("Madera");
+		materiales.add("yeso");
+		materiales.add("Arena");
+		materiales.add("Hormigon");
+		materiales.add("Camion");
+		materiales.add("Motoniveladoras");
+		materiales.add("Tractores Topadores");
+		materiales.add("Excavadora");
+		materiales.add("Pala cargadora");
+		materiales.add("Volquete");
+		materiales.add("Hormigonera");
+	}
+
+	private Maestro_obra maestro_obra;
+
 
 	public String getNombre() {
 		return nombre;
@@ -35,12 +54,12 @@ public class Maestro_obra {
 		this.id_empleado = id_empleado;
 	}
 
-	public String getContrase�a() {
-		return contrase�a;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setContrase�a(String contrase�a) {
-		this.contrase�a = contrase�a;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public String getSector_trabajo() {
@@ -59,81 +78,76 @@ public class Maestro_obra {
 		this.cantidadobreros = cantidadobreros;
 	}
 
-	public void setListaPlanos(List<Plano> listaPlanos) {
-		this.listaPlanos = listaPlanos;
+	public String getPlano() {
+		return Plano;
 	}
-	
 
-	public Maestro_obra(String nombre, int id_empleado, String contrase�a, String sector_trabajo, int cantidadobreros) {
+	public void setPlano(String plano) {
+		Plano = plano;
+	}
+
+	public ArrayList<String> getMateriales() {
+		return materiales;
+	}
+
+	public void setMateriales(ArrayList<String> materiales) {
+		this.materiales = materiales;
+	}
+
+
+	public Maestro_obra(String nombre, int id_empleado, String contraseña, String sector_trabajo, int cantidadobreros,
+						String plano) {
 		super();
 		this.nombre = nombre;
 		this.id_empleado = id_empleado;
-		this.contrase�a = contrase�a;
+		this.contraseña = contraseña;
 		this.sector_trabajo = sector_trabajo;
 		this.cantidadobreros = cantidadobreros;
-		this.listaPlanos = listaPlanos;
-	}
-	
-	@Override
-	public String toString() {
-		return "Maestro_obra [nombre=" + nombre + ", id_empleado=" + id_empleado + ", contrase�a=" + contrase�a
-				+ ", sector_trabajo=" + sector_trabajo + "]";
+		Plano = plano;
 	}
 
-	public boolean Login(String nombre, String contrase�a) {   //login para entrar 
-		if ( contrase�a.equalsIgnoreCase(this.getContrase�a())) {
+
+	@Override
+	public String toString() {
+		return "Maestro_obra [nombre=" + nombre + ", id_empleado=" + id_empleado + ", contraseña=" + contraseña
+				+ ", sector_trabajo=" + sector_trabajo + ", cantidadobreros=" + cantidadobreros + ", Plano=" + Plano
+				+ "]";
+	}
+
+
+	public boolean Login(String nombre, String contraseña) {   //login para entrar
+		if ( contraseña.equalsIgnoreCase(this.getContraseña())) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 
-	public ArrayList<Obrero> solicitarObreros(int cantidad, String nombre) {// solicitar obreros
-	    ArrayList<Obrero> obrerosSolicitados = new ArrayList<>();
-	    int contador = 0;
+	public void solicitarMateriales() {
 
-	    for (Obrero obrero : listaObreros) {
-	        if (obrero.getNombre().equalsIgnoreCase(nombre) && obrero.isDisponible()) {
-	            obrerosSolicitados.add(obrero);
-	            obrero.setDisponible(false);
-	            contador++;
+		String input = JOptionPane.showInputDialog(null, "Ingrese los materiales que necesita separados por coma:");
+		String[] materialesSolicitados = input.split(",");
 
-	            if (contador == cantidad) {
-	                break;
-	            }
-	        }
-	    }
+		StringBuilder mensaje = new StringBuilder("Solicitud de materiales:\n");
+		boolean hayEnStock = true;
 
-	    if (contador == cantidad) {
-	        JOptionPane.showMessageDialog(null, "Obreros solicitados correctamente.");
-	    } else {
-	        JOptionPane.showMessageDialog(null, "No hay suficientes obreros disponibles para la solicitud.");
-	    }
+		for (String material : materialesSolicitados) {
+			if (materiales.contains(material.trim())) {
+				mensaje.append("- ").append(material.trim()).append(": En stock\n");
+			} else {
+				mensaje.append("- ").append(material.trim()).append(": No hay en stock\n");
+				hayEnStock = false;
+			}
+		}
+		if (hayEnStock) {
+			mensaje.append("\nTodos los materiales están en stock.");
+		} else {
+			mensaje.append("\nNo todos los materiales están en stock.");
+		}
 
-	    return obrerosSolicitados;
+		JOptionPane.showMessageDialog(null, mensaje.toString(), "Solicitud de materiales", JOptionPane.INFORMATION_MESSAGE);
+
 	}
-	
-	public Maestro_obra() {
-
-	    ArrayList<String>  listaProyectos = new ArrayList<String>();
-        listaProyectos.add("Alvear Tower");
-        listaProyectos.add("Tower Cruz");
-        listaProyectos.add("Tower Main");
-        listaProyectos.add("Tower ZEIN");
-        listaProyectos.add("Tower Home");
-    }
-	public ArrayList<proyecto_obra> getListaProyectos() {
-        return listaProyectos;
-    }
-	
-	public void visualizarProyectos() {
-        String detallesProyectos = "";
-        for (proyecto_obra proyecto : listaProyectos) {
-            detallesProyectos += "id_obra: " + proyecto.getId_obra() + "\n" +
-                    "Obreros: " + proyecto.getObreros() + "\n" ;
-        }
-        JOptionPane.showMessageDialog(null, detallesProyectos);
-    }
 
 	
 

@@ -28,6 +28,7 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
+<<<<<<< HEAD
     public String getDni() {
         return dni;
     }
@@ -42,10 +43,6 @@ public abstract class Usuario {
 
     public void setClave(String clave) {
         this.clave = clave;
-    }
-
-    public boolean login (String dni, String clave) {
-        return this.dni.equeals(dni) && this.clave.equals(clave);
     }
 
     @Override
