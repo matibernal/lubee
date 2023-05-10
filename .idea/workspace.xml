@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8263e542-23b1-43da-bbb5-8605241aa3ff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +44,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -72,6 +78,7 @@
       <workItem from="1683516861866" duration="177000" />
       <workItem from="1683517056100" duration="122000" />
       <workItem from="1683517918538" duration="6602000" />
+      <workItem from="1683642727420" duration="23176000" />
     </task>
     <servers />
   </component>
