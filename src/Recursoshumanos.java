@@ -3,27 +3,24 @@ import java.util.List;
 
 public class Recursoshumanos {
 
-
-        private int idUsuario;
-        private String nombre;
-        private String apellido;
-        private String sectorTrabajo;
-
-
+    private int idUsuario;
+    private String nombre;
+    private String apellido;
+    private String sectorTrabajo;
+    private LinkedList<Recursoshumanos> listaTrabajadores;
 
 
-    public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo) {
+    public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo, LinkedList<Recursoshumanos> listaTrabajadores) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.sectorTrabajo = sectorTrabajo;
-
+        this.listaTrabajadores = new LinkedList<>();
     }
 
     public int getIdUsuario() {
             return idUsuario;
         }
-
         public void setIdUsuario(int idUsuario) {
             this.idUsuario = idUsuario;
         }
@@ -36,28 +33,31 @@ public class Recursoshumanos {
             this.sectorTrabajo = sectorTrabajo;
         }
 
-    public String getNombre() {
+        public String getNombre() {
         return nombre;
-    }
+        }
 
-    public void setNombre(String nombre) {
+         public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
+        }
 
-    public String getApellido() {
+        public String getApellido() {
         return apellido;
-    }
+        }
 
-    public void setApellido(String apellido) {
+        public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
+        }
 
-    public void agregarPersonal(int idUsuario,String nombre, String apellido, String sectorTrabajo){
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.sectorTrabajo = sectorTrabajo;
-    }
+        public void añadirTrabajador (Recursoshumanos trabajador) {
+            listaTrabajadores.add(trabajador)
+        }
+
+        public void quitarTrabajaro(Recursoshumanos trabajador) {
+            listaTrabajadores.remove(trabajador)
+        }
+
+
 
 
 }
