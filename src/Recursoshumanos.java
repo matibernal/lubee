@@ -2,20 +2,13 @@ import java.util.List;
 
 public class Recursoshumanos {
 
-<<<<<<< Updated upstream
-    private int idUsuario;
-    private String nombre;
-    private String apellido;
-    private String sectorTrabajo;
-    private LinkedList<Recursoshumanos> listaTrabajadores;
-=======
 
         private int idUsuario;
         private String nombre;
         private String apellido;
         private String sectorTrabajo;
         private LinkedList<Recursoshumanos> listaTrabajadores;
->>>>>>> Stashed changes
+
 
 
     public Recursoshumanos(int idUsuario, String nombre, String apellido, String sectorTrabajo, LinkedList<Recursoshumanos> listaTrabajadores) {
@@ -23,12 +16,8 @@ public class Recursoshumanos {
         this.nombre = nombre;
         this.apellido = apellido;
         this.sectorTrabajo = sectorTrabajo;
-<<<<<<< Updated upstream
-        this.listaTrabajadores = new LinkedList<>();
-=======
         listaTrabajadores = new LinkedList<>();
 
->>>>>>> Stashed changes
     }
 
     public int getIdUsuario() {
@@ -70,21 +59,16 @@ public class Recursoshumanos {
             listaTrabajadores.remove(trabajador)
         }
 
-
-<<<<<<< Updated upstream
-=======
-    public void añadirTrabajador(Recursoshumanos trabajador){
-        listaTrabajadores.add(trabajador);
+    @Override
+    public String toString() {
+        return "Recursoshumanos{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", sectorTrabajo='" + sectorTrabajo + '\'' +
+                ", listaTrabajadores=" + listaTrabajadores +
+                '}';
     }
->>>>>>> Stashed changes
-
-    public void quitarTrabajador(Recursoshumanos trabajador){
-        lista.Trabajadores.remove(trabajador);
-    }
-
-
-
-
 }
 
 

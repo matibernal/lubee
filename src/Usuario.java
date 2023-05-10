@@ -28,7 +28,6 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
-<<<<<<< HEAD
     public String getDni() {
         return dni;
     }
