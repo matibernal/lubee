@@ -59,7 +59,7 @@ public class Recursoshumanos {
             listaTrabajadores.add(trabajador)
         }
 
-        public void quitarTrabajaro(Recursoshumanos trabajador) {
+        public void quitarTrabajador(Recursoshumanos trabajador) {
             listaTrabajadores.remove(trabajador)
         }
 

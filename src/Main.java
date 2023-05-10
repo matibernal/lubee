@@ -88,9 +88,27 @@ public class Main {
                                 "\n 1-Agregar Trabajador" +
                                 "\n 2-Quitar Trabajador"));
                         switch(opRrhh) {
-                            case 1:
+                            case 1: String idUsuario = integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador: "));
+                                Trabajador trabajador = recursosHuanos.buscarTrabajador(idUsuario);
+
+                                if (trabajador != null) {
+                                    recursosHumanos.addTrabajador(trabajador);
+                                    JOptionPane.showMessageDialog(null, "Trabajador añadido correctamente");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador");
+                                }
                                 break;
                             case 2:
+                                String id = integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador que desea quitar: "));
+                                Trabajador t = recursosHuanos.buscarTrabajador(idUsuario);
+
+                                if (t != null) {
+                                    recursosHumanos.removeTrabajador(t);
+                                    JOptionPane.showMessageDialog(null, "Trabajador eliminado correctamente");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador" + id);
+                                }
+
                                 break;
                             default:
                                 JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");  
