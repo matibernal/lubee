@@ -7,61 +7,49 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Maestro_obra {
-	 private List<Obrero> listaObreros = new ArrayList<>();
-	private List<Plano> listaPlanos= new ArrayList<>();
-	private ArrayList<proyecto_obra> listaProyectos; 
+	// private List<Plano> listaPlanos= new ArrayList<>();
 	
 	private String nombre;
 	private int id_empleado;
 	private String contraseña;
 	private String sector_trabajo;
-	private int cantidadobreros;
-	private String Plano;
+	//private int cantidadobreros;
+	//private String Plano;
 	
 
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public int getId_empleado() {
 		return id_empleado;
 	}
-
 	public void setId_empleado(int id_empleado) {
 		this.id_empleado = id_empleado;
 	}
-
 	public String getContraseña() {
 		return contraseña;
 	}
-
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-
 	public String getSector_trabajo() {
 		return sector_trabajo;
 	}
-
 	public void setSector_trabajo(String sector_trabajo) {
 		this.sector_trabajo = sector_trabajo;
 	}
-
-	public int getCantidadobreros() {
-		return cantidadobreros;
-	}
-
-	public void setCantidadobreros(int cantidadobreros) {
-		this.cantidadobreros = cantidadobreros;
-	}
-
-	public void setListaPlanos(List<Plano> listaPlanos) {
-		this.listaPlanos = listaPlanos;
-	}
+	//public int getCantidadobreros() {
+		//return cantidadobreros;
+	//}
+	//public void setCantidadobreros(int cantidadobreros) {
+	//	this.cantidadobreros = cantidadobreros;
+	//}
+	//public void setListaPlanos(List<Plano> listaPlanos) {
+		//this.listaPlanos = listaPlanos;
+	//}
 	
 
 	public Maestro_obra(String nombre, int id_empleado, String contraseña, String sector_trabajo, int cantidadobreros) {
@@ -70,8 +58,7 @@ public class Maestro_obra {
 		this.id_empleado = id_empleado;
 		this.contraseña = contraseña;
 		this.sector_trabajo = sector_trabajo;
-		this.cantidadobreros = cantidadobreros;
-		this.listaPlanos = listaPlanos;
+		//this.cantidadobreros = cantidadobreros;
 	}
 	
 	@Override
@@ -80,7 +67,7 @@ public class Maestro_obra {
 				+ ", sector_trabajo=" + sector_trabajo + "]";
 	}
 
-	public boolean Login(String nombre, String contraseña) {   //login para entrar 
+	public boolean Login(String nombre, String contraseña) {//login para entrar
 		if ( contraseña.equalsIgnoreCase(this.getContraseña())) {
 			return true;
 		}else {
@@ -88,6 +75,7 @@ public class Maestro_obra {
 		}
 	}
 
+	/*
 	public ArrayList<Obrero> solicitarObreros(int cantidad, String nombre) {// solicitar obreros
 	    ArrayList<Obrero> obrerosSolicitados = new ArrayList<>();
 	    int contador = 0;
@@ -112,7 +100,8 @@ public class Maestro_obra {
 
 	    return obrerosSolicitados;
 	}
-	
+
+
 	public Maestro_obra() {
 
 	    ArrayList<String>  listaProyectos = new ArrayList<String>();
@@ -122,6 +111,7 @@ public class Maestro_obra {
         listaProyectos.add("Tower ZEIN");
         listaProyectos.add("Tower Home");
     }
+
 	public ArrayList<proyecto_obra> getListaProyectos() {
         return listaProyectos;
     }
@@ -134,6 +124,7 @@ public class Maestro_obra {
         }
         JOptionPane.showMessageDialog(null, detallesProyectos);
     }
+*/
 
 	
 
