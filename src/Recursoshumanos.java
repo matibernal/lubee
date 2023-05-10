@@ -7,7 +7,7 @@ public class Recursoshumanos {
         private String nombre;
         private String apellido;
         private String sectorTrabajo;
-        private LinkedList<Recursoshumanos> listaTrabajadores;
+        private List<Recursoshumanos> listaTrabajadores = new ArrayList<>();
 
 
 
@@ -16,7 +16,7 @@ public class Recursoshumanos {
         this.nombre = nombre;
         this.apellido = apellido;
         this.sectorTrabajo = sectorTrabajo;
-        listaTrabajadores = new LinkedList<>();
+        listaTrabajadores.add(this);
 
     }
 
@@ -49,6 +49,10 @@ public class Recursoshumanos {
 
         public void setApellido(String apellido) {
         this.apellido = apellido;
+        }
+
+        public static List<Recursoshumanos> getListaTrabajadores() {
+        return listaTrabajadores;
         }
 
         public void añadirTrabajador (Recursoshumanos trabajador) {

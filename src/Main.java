@@ -87,7 +87,16 @@ public class Main {
                         int opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere realizar" +
                                 "\n 1-Agregar Trabajador" +
                                 "\n 2-Quitar Trabajador"));
+                        switch(opRrhh) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");  
+                        }
 
+                        opRrhhnv = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier número para continuar"));
                     } while (opRrhhnv !=1);
                     break;
 
