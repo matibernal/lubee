@@ -95,7 +95,33 @@ public class Main {
                         int opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere realizar" +
                                 "\n 1-Agregar Trabajador" +
                                 "\n 2-Quitar Trabajador"));
+                        switch(opRrhh) {
+                            case 1:
+                                String idUsuario = JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador");
+                                Trabajador trabajador = recursosHumanos.buscarTrabajador(idUsuario);
 
+                                if (trabajador != null) {
+                                    recursosHumanos.addTrabajador(trabajador);
+                                    JOptionPane.showMessageDialog(null, "Trabajador añadido correctamente");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador con ese ID" + idUsuario);
+                                }
+                                break;
+                            case 2:
+                                String id = JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador que desea eliminar");
+                                Trabajador t = recursosHumanos.buscarTrabajador(id);
+
+                                if (t != null){
+                                    recursosHumanos.removeTrabajador(t);
+                                    JOptionPane.showMessageDialog(null, "Trabajador eliminado correctamente");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador con ese ID" + id);
+                                }
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");
+                        }
+                        opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Administrador. Cualquier número para continuar"));
                     } while (opRrhhnv !=1);
                     break;
 
