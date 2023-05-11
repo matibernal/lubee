@@ -55,7 +55,6 @@ public class Recursoshumanos {
         public void setApellido(String apellido) {
         this.apellido = apellido;
         }
-        
 
       //  public static List<Recursoshumanos> getListaTrabajadores() {
         //return listaTrabajadores;
