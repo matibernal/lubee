@@ -51,16 +51,22 @@ public class Recursoshumanos {
         this.apellido = apellido;
         }
 
+
         public static List<Recursoshumanos> getListaTrabajadores() {
         return listaTrabajadores;
         }
 
-        public void añadirTrabajador (Recursoshumanos trabajador) {
-            listaTrabajadores.add(trabajador)
+        public void addTrabajador (Recursoshumanos trabajador) {
+
+        //listaTrabajadores.add(trabajador)
+
         }
 
-        public void quitarTrabajador(Recursoshumanos trabajador) {
-            listaTrabajadores.remove(trabajador)
+        public void removeTrabajador(Recursoshumanos trabajador) {
+
+        //listaTrabajadores.remove(trabajador)
+
+
         }
 
     @Override
