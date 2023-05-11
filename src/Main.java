@@ -96,7 +96,7 @@ public class Main {
                                 "\n 1-Agregar Trabajador" +
                                 "\n 2-Quitar Trabajador"));
                         switch(opRrhh) {
-                            case 1:
+                           /* case 1:
                                 String idUsuario = JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador");
                                 Trabajador trabajador = recursosHumanos.buscarTrabajador(idUsuario);
 
@@ -118,10 +118,10 @@ public class Main {
                                     JOptionPane.showMessageDialog(null, "No se encontro el trabajador con ese ID" + id);
                                 }
                                 break;
-                            default:
+                         */   default:
                                 JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");
                         }
-                        opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Administrador. Cualquier número para continuar"));
+                        opRrhhnv = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier numero para continuar"));
                     } while (opRrhhnv !=1);
                     break;
 

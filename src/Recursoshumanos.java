@@ -57,9 +57,9 @@ public class Recursoshumanos {
         }
         
 
-        public static List<Recursoshumanos> getListaTrabajadores() {
-        return listaTrabajadores;
-        }
+      //  public static List<Recursoshumanos> getListaTrabajadores() {
+        //return listaTrabajadores;
+        //}
 
         public void addTrabajador (Recursoshumanos trabajador) {
 
