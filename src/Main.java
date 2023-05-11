@@ -1,17 +1,11 @@
-import javax.swing.JOptionPane;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.util.LinkedList;
 
 public class Main {
 
 
     public static void main(String[] args) {
-
-
+        Administrador admin = new Administrador(1,"Franco","Diaz");
 
         Administrador Mati = new Administrador(1,"Matías","Bernal");
         Administrador Kei = new Administrador(2,"Keila","Degregorio");
@@ -19,17 +13,30 @@ public class Main {
         Administrador Toto = new Administrador(4,"Tomas","Tejada");
         Administrador Mili = new Administrador(5,"Milagros","Lobo");
         Cliente Gamaliel = new Cliente(1,12345678,"Gamaliel", "Quiroz", "2346132");
-        Menu();
-
-        Recursoshumanos Juan = new Recursoshumanos(1,"Juan","Lopez","Obrero");
+        Operario operario = new Operario (0);
+        Obrero obrero = new Obrero("","", true);
+        Maestro_obra maestro = new Maestro_obra("", 0, "", "", 0);
+        Plano plano = new Plano (0, "");
+        Recursoshumanos rrhh = new Recursoshumanos(1,"Juan","Lopez","Obrero");
         Recursoshumanos Pablo = new Recursoshumanos(2,"Pablo","Rodriguez","Obrero");
         Recursoshumanos Lucio = new Recursoshumanos(3,"Lucio","Perez","Maestro Mayor");
         Recursoshumanos Marcos = new Recursoshumanos(4,"Marcos","Suarez", "Operario");
+        proyecto_obra obra = new proyecto_obra(0, true, "", "");
+        Materiales material = new Materiales("", 0, 0, 0, true);
+        Maquinaria maquinaria = new Maquinaria("", true, "", 0);
+        LinkedList<proyecto_obra> listaProyectos = new LinkedList<>();
+        LinkedList<proyecto_obra> ObrerosEnObra = new LinkedList<>();
+
+
+        Menu(admin,  operario,  rrhh,  maestro,  material, maquinaria, obrero, plano, obra, listaProyectos, ObrerosEnObra);
 
 
     }
 
-    public static void Menu() {
+    private static void Menu() {
+    }
+
+    public static void Menu(Administrador admin, Operario operario, Recursoshumanos rrhh, Maestro_obra maestro, Materiales material, Maquinaria maquinaria, Obrero obrero, Plano plano, proyecto_obra obra, LinkedList<proyecto_obra> listaProyectos, LinkedList<proyecto_obra> ObrerosenObra) {
         JOptionPane.showMessageDialog(null, "  Bienvenido a LUBEE  ");
         JOptionPane.showMessageDialog(null, "  La empresa numero 1 en construcciones  ");
         int a = 0;
@@ -38,7 +45,8 @@ public class Main {
             int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta " +
                     "\n Numero 1: si es Administrador " +
                     "\n Numero 2: si es RRHH " +
-                    "\n Numero 3: Si es Maestro Mayor de Obra"));
+                    "\n Numero 3: Si es Maestro Mayor de Obra" +
+                    "\n Numero 4: si es Operario "));
             switch (op) {
                 case 1:
                     int idAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de admin: "));
@@ -87,221 +95,100 @@ public class Main {
                         int opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere realizar" +
                                 "\n 1-Agregar Trabajador" +
                                 "\n 2-Quitar Trabajador"));
-                        switch(opRrhh) {
-                            case 1: String idUsuario = integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador: "));
-                                Trabajador trabajador = recursosHuanos.buscarTrabajador(idUsuario);
 
-                                if (trabajador != null) {
-                                    recursosHumanos.addTrabajador(trabajador);
-                                    JOptionPane.showMessageDialog(null, "Trabajador añadido correctamente");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador");
-                                }
-                                break;
-                            case 2:
-                                String id = integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador que desea quitar: "));
-                                Trabajador t = recursosHuanos.buscarTrabajador(idUsuario);
-
-                                if (t != null) {
-                                    recursosHumanos.removeTrabajador(t);
-                                    JOptionPane.showMessageDialog(null, "Trabajador eliminado correctamente");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador" + id);
-                                }
-
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");  
-                        }
-
-                        opRrhhnv = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier número para continuar"));
                     } while (opRrhhnv !=1);
                     break;
 
                 case 3:
-                    Maestro_obra Mario = new Maestro_obra("Mario", 25,"1234","maestro mayor de obra",20,""); //Milagros codigo
-                    Maestro_obra Carlos = new Maestro_obra("Carlos", 26,"2222","maestro mayor de obra",20,"");
-                    Maestro_obra Roberto = new Maestro_obra("Roberto", 27,"7777","maestro mayor de obra",20,"");
-                    int i=0;
-                    boolean ingreso = true;
-                    boolean verifica = true;
-                    int intentos=0;
-                    do {
-                        String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre de usuario:");
-                        String contraseña= JOptionPane.showInputDialog(null, "Ingrese su contraseña:");
+                    // if (Ingreso Maestro mayor de obra is true) {
 
-                        if(Mario.Login(nombre,contraseña)) {
-                            JOptionPane.showMessageDialog(null, "Clave correcta");
-                            int opcionEntrada;
-                            do {
-                                opcionEntrada=Integer.parseInt(JOptionPane.showInputDialog("Has Entrado con Exito!!" + "\nBienvenido" +"_"+ Mario.getNombre()+ "\nQue deseas realizar:"+"\nOpciones:"
-                                        +  "\n 1- Realizar un Plano "
-                                        + "\n 2- Buscar Planos "
-                                        + "\n 3- Llevar adelante un proyecto"
-                                        + "\n 4- Realizar pedido de materiales"
-                                        + "\n 5- Solicitar Obreros"
-                                        + "\n 6- Solicitar Maquinarias"
-                                        +"\n 0- Salir"));
+                    int opcionmaestro=Integer.parseInt(JOptionPane.showInputDialog("Bienvenido al Menu de Maestro Mayor de Obra " +
+                            "\n Asignar Obreros a una obra" +
+                            "\n Seccion de planos" +
+                            "\n Solicitar Materiales" +
+                            "\n Solicitar Maquinarias"));
+                    switch (opcionmaestro) {
 
-                                switch (opcionEntrada) {
-                                    case 1: // realizar plano
-                                        Plano plano2 = new Plano();
-                                        List<Plano> listaPlanos2 = plano2.realizarPlano();
+                        case 1:
+                            obrero.AsignarObrero(obra, listaProyectos, ObrerosenObra);
 
-                                        StringBuilder sb = new StringBuilder();
-                                        for (Plano p : listaPlanos2) {
-                                            sb.append(p.toString()).append("\n\n");
-                                        }
-                                        JOptionPane.showMessageDialog(null, sb.toString(), "Lista de Planos", JOptionPane.INFORMATION_MESSAGE);
-                                        JOptionPane.showConfirmDialog(null, "¿Desea Realizar un plano?");
+                            break;
+                        case 2:
+                            int opcionplanos=Integer.parseInt(JOptionPane.showInputDialog("Seccion Planos " +
+                                    "\n Ver Plano" +
+                                    "\n Relizar Plano" +
+                                    "\n Modificar Plano" +
+                                    "\n Eliminar plano"));
+                                switch (opcionplanos) {
+                                case 1:
+                                    plano.realizarPlano();
 
-                                        String nombre1 = JOptionPane.showInputDialog(null, "Introduzca el nombre del plano:");
-                                        String descripcion = JOptionPane.showInputDialog(null, "Introduzca la estacion para realizar la obra:");
-                                        double ancho = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca el ancho del plano:"));
-                                        double alto = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca el alto del plano:"));
+                                    break;
+                                case 2:
+                                // ver plano
 
-                                        Plano nuevoPlano = new Plano(nombre1, descripcion, ancho, alto);
+                                    break;
+                                case 3:
+                                // modificar plano
 
-                                        try {
-                                            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("plano.dat"));
-                                            salida.writeObject(nuevoPlano);
-                                            salida.close();
-                                            JOptionPane.showMessageDialog(null, "Plano guardado con éxito en plano.dat");
-                                        } catch (Exception e) {
-                                            JOptionPane.showMessageDialog(null, "Error al guardar el plano: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                                        }
+                                    break;
+                                case 4:
+                                    plano.eliminarPlano();
 
-                                        break;
-                                    case 2: // buscar plano
-
-                                        List<Plano> listaPlanos = new ArrayList<>();
-                                        listaPlanos.add(new Plano("Plano 1", "Primavera", "Palermo Soho", 1000.0, 2000.0));
-                                        listaPlanos.add(new Plano("Plano 2", "Otoño", "Quilmes", 1500.0, 2500.0));
-                                        listaPlanos.add(new Plano("Plano 3", "Verano", "Avenida Corrientes", 2000.0, 3000.0));
-                                        listaPlanos.add(new Plano("Plano 4", "Primavera", "Rivadavia", 2000.0, 3000.0));
-                                        listaPlanos.add(new Plano("Plano 5", "Verano", "Alcorta", 2000.0, 3000.0));
-
-                                        String nombreBuscado = JOptionPane.showInputDialog("¿Que plano deseas buscar?");
-                                        String descripcionBuscada = JOptionPane.showInputDialog("¿Cual es la estacion donde se realizara la obra de este plano?");
-                                        Plano planoEncontrado = null;
-                                        for (Plano plano : listaPlanos) {
-                                            if (plano.getNombre().equals(nombreBuscado) && plano.getDescripcion().equals(descripcionBuscada)) {
-                                                planoEncontrado = plano;
-                                                break;
-                                            }
-                                        }
-
-                                        if (planoEncontrado != null) {
-                                            JOptionPane.showMessageDialog(null,"Plano encontrado:\nID: " + planoEncontrado.getId() + "\nNombre: " + planoEncontrado.getNombre() + "\nDescripcion: " + planoEncontrado.getDescripcion() + "\nUbicacion: " + planoEncontrado.getUbicacion() + "\nAncho: " + planoEncontrado.getAncho() + "\nAlto: " + planoEncontrado.getAlto());
-                                        } else {
-                                            JOptionPane.showMessageDialog(null,"Plano no encontrado");
-                                        }
-
-                                        String[] opciones = {"Editar plano", "Eliminar plano"};
-                                        int opcionSeleccionada2 = JOptionPane.showOptionDialog(null, "¿Qué acción desea realizar?", "Opciones",
-                                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-
-                                        if (opcionSeleccionada2 == 0) {
-
-                                            String nuevoNombre = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre del plano:", planoEncontrado.getNombre());
-                                            planoEncontrado.setNombre(nuevoNombre);
-                                            JOptionPane.showMessageDialog(null, "Plano editado correctamente.");
-                                        } else if (opcionSeleccionada2 == 1) {
-
-                                            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el plano?",
-                                                    "Confirmación", JOptionPane.YES_NO_OPTION);
-                                            if (confirmacion == JOptionPane.YES_OPTION) {
-                                                planoEncontrado.eliminarPlano();
-                                                JOptionPane.showMessageDialog(null, "Plano eliminado correctamente.");
-                                            }
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Opción no es válida.");
-                                        }
+                                    break;
 
 
-                                        break;
 
-                                    case 3: // llevar adelante un proyecto
-                                        JOptionPane.showMessageDialog(null, "¿Has elegido la opcion llevar adelante un proyecto?" + "Los proyectos hasta la fecha son:");
-                                        Plano plano3 = new Plano();
-                                        List<Plano> listaPlanos3 = plano3.realizarPlano();
+                            }
 
-                                        StringBuilder sbsb = new StringBuilder();
-                                        for (Plano p : listaPlanos3) {
-                                            sbsb.append(p.toString()).append("\n\n");
-                                        }
-                                        JOptionPane.showMessageDialog(null, sbsb.toString(), "Lista de Planos", JOptionPane.INFORMATION_MESSAGE);
-                                        int opcion_modi = JOptionPane.showOptionDialog(
-                                                null,
-                                                "Elija una opción",
-                                                "Opciones",
-                                                JOptionPane.DEFAULT_OPTION,
-                                                JOptionPane.QUESTION_MESSAGE,
-                                                null,
-                                                new Object[]{"Posponer el proyecto", "Solicitar modificaciones"},
-                                                "Posponer el proyecto"
-                                        );
-                                        if (opcion_modi == 0) {
-                                            int respuesta = JOptionPane.showConfirmDialog(
-                                                    null,
-                                                    "¿Desea cambiar la fecha del proyecto?",
-                                                    "Posponer el proyecto",
-                                                    JOptionPane.YES_NO_OPTION
-                                            );
-                                            if (respuesta == JOptionPane.YES_OPTION) {
-                                                JOptionPane.showMessageDialog(null, "Ha elegido cambiar la fecha del proyecto.");
-                                                JOptionPane.showInputDialog("¿Que fecha deseas elegir?");
-                                                JOptionPane.showMessageDialog(null, "Se agendo la fecha");
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "Ha pospuesto el proyecto sin cambiar la fecha.");
-                                            }
-                                        } else {
-                                            int respuesta = JOptionPane.showConfirmDialog(
-                                                    null,
-                                                    "¿Desea  solicitadas  modificaciones en la obra?",
-                                                    "Solicitar modificaciones",
-                                                    JOptionPane.YES_NO_OPTION
-                                            );
-                                            if (respuesta == JOptionPane.YES_OPTION) {
-                                                JOptionPane.showMessageDialog(null, "Ha solicitado modificaciones, en el trancurso del dia se le informara si se acepta la solicitud.");
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "Ha rechazado el  pedido de modificaciones .");
-                                            }
-                                        }
-                                        break;
-                                    case 4: // realizar pedido de materiales
-                                        JOptionPane.showMessageDialog(null, "A seleccionado la opcion realizar pedido de Materiales");
-                                        Maestro_obra maestroObra = new Maestro_obra();
-                                        maestroObra.solicitarMateriales();
+                        break;
 
-                                        break;
-                                    case 5: // solicitar obreros
-                                        int cantidad_obreros = 5;
-                                        JOptionPane.showMessageDialog(null, "A seleccionado la opcion realizar pedido de Obreros");
-                                        JOptionPane.showInputDialog("ingrese la cantidad de obreros que nesesita");
-                                        if (cantidad_obreros>=5) {
-                                            JOptionPane.showMessageDialog(null, "los obreros han sido asignados" + "\n Juan\nCarlos\nEnrique\nRoman\nMartin");
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "No hay suficientes obreros disponibles");
-                                        }
+                        case 3:
+                            material.SolicitarMateriales();
 
-                                        break;
-                                    case 6: // solicitar maquinarias
-                                        JOptionPane.showMessageDialog(null, "A seleccionado la opcion realizar pedido de Herramientas y Maquinas");
-                                        Maestro_obra MaestroObra = new Maestro_obra();
-                                        MaestroObra.solicitarMateriales();
+                            break;
+                        case 4:
+                            maquinaria.solicitarMaquinarias();
 
-                                        break;
-                                }
-                            } while (!verifica && intentos<3);
+                            break;
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "vuelve a intentar mas tarde");
+
+                    }
+
+
+                    break;
+
+                case 4:
+                    if (operario.IngresoOperario()) {
+                        int opcionoperario=Integer.parseInt(JOptionPane.showInputDialog("Bienvenido al Menu de Operario " +
+                                "\n Realizar Inventario" +
+                                "\n Agregar Maquinarias" +
+                                "\n Agregar Materiales" +
+                                "\n Ver historial de inventarios"));
+                        switch (opcionoperario) {
+
+                            case 1:
+                                operario.RealizarInvenario();
+
+                                break;
+                            case 2:
+                                maquinaria.AgregarMaquinaria();
+
+                                break;
+
+                            case 3:
+                                material.AgregarMateriales();
+
+                                break;
+                            case 4:
+                                operario.HistorialInventarios();
+
+                                break;
+
+
                         }
 
-
-                    } while (!ingreso && i<=5);  // Salida del Maestro mayor de Obra.
-
+                    }
 
                     break;
 
