@@ -1,4 +1,4 @@
-
+package Datos;
 
 import java.util.LinkedList;
 
@@ -61,7 +61,7 @@ public class Materiales {
 
 	@Override
 	public String toString() {
-		return "Materiales{" +
+		return "Datos.Materiales{" +
 				"nombre='" + nom + '\'' +
 				", id=" + id +
 				", cantidaddisp=" + cantidaddisp +

@@ -1,5 +1,5 @@
+package Datos;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class proyecto_obra {
@@ -37,7 +37,7 @@ public class proyecto_obra {
 
 	@Override
 	public String toString() {
-		return "proyecto_obra [id_obra=" + id_obra + ", habilitado="
+		return "Datos.proyecto_obra [id_obra=" + id_obra + ", habilitado="
 				+ habilitado + "]";
 	}
 

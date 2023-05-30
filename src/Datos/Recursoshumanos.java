@@ -1,3 +1,5 @@
+package Datos;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class Recursoshumanos {
         this.apellido = apellido;
         }
 
-      //  public static List<Recursoshumanos> getListaTrabajadores() {
+      //  public static List<Datos.Recursoshumanos> getListaTrabajadores() {
         //return listaTrabajadores;
         //}
 
@@ -74,7 +76,7 @@ public class Recursoshumanos {
 
     @Override
     public String toString() {
-        return "Recursoshumanos{" +
+        return "Datos.Recursoshumanos{" +
                 "idUsuario=" + idUsuario +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

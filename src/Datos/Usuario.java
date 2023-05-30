@@ -1,3 +1,5 @@
+package Datos;
+
 public abstract class Usuario {
 
     private String nombre;
@@ -46,7 +48,7 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "Datos.Usuario{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +
