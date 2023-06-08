@@ -18,7 +18,7 @@ public class Main {
         Obrero obrero = new Obrero(0,"","", true, 0);
         Maestro_obra maestro = new Maestro_obra("", 0, "", "", 0);
         Plano plano = new Plano(0, "", 0, 0);
-        Recursoshumanos rrhh = new Recursoshumanos(1,"Juan","Lopez","Obrero");
+        Recursoshumanos rrhh = new Recursoshumanos(1,"Juan","Lopez",0);
         proyecto_obra obra = new proyecto_obra(0, true, "", "");
         Materiales material = new Materiales("", 0, 0, 0, true);
         Maquinaria maquinaria = new Maquinaria("", true, "", 0);
@@ -89,41 +89,123 @@ public class Main {
                     break;
 
                 case 2:
-                    int opRrhhnv = 0;
+                    int opRrhh = 0;
+
+                    String[] opciones = new String[]{"Modificaciones en el area de RRHH", "Modificaciones en el area de Administracion", "Modificaciones en el area de Operario", "Salir"};
+                    String opcion;
+
                     do {
-                        int opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere realizar" +
-                                "\n 1-Agregar Operario o Administradpr" +
-                                "\n 2-Eliminar Operario o Administrador" +
-                                "\n 3-Visualizar Operario o Administrador"));
-                        switch(opRrhh) {
-                           /* case 1:
-                                String idUsuario = JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador");
-                                Trabajador trabajador = recursosHumanos.buscarTrabajador(idUsuario);
+                        opcion = (String) JOptionPane.showInputDialog(null,
+                                "Bienvenido! Que desea realizar?",
+                                "",
+                                JOptionPane.DEFAULT_OPTION,
+                                null,
+                                opciones,
+                                opciones[0]);
 
-                                if (trabajador != null) {
-                                    recursosHumanos.addTrabajador(trabajador);
-                                    JOptionPane.showMessageDialog(null, "Trabajador añadido correctamente");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador con ese ID" + idUsuario);
-                                }
-                                break;
-                            case 2:
-                                String id = JOptionPane.showInputDialog(null, "Ingrese el ID del trabajador que desea eliminar");
-                                Trabajador t = recursosHumanos.buscarTrabajador(id);
-
-                                if (t != null){
-                                    recursosHumanos.removeTrabajador(t);
-                                    JOptionPane.showMessageDialog(null, "Trabajador eliminado correctamente");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "No se encontro el trabajador con ese ID" + id);
-                                }
-                                break;
-                         */   default:
-                                JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");
+                        switch (opcion) {
                         }
-                        opRrhhnv = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier numero para continuar"));
-                    } while (opRrhhnv !=1);
-                    break;
+
+                            case "Modificaciones en el area de RRHH":
+                                String[] op = new String[]{"Agregar trabajador", "Mostrar trabajador", "Eliminar trabajador", "Editar trabajador", "Salir"};
+                                String op;
+
+                                do {
+                                    op = (String) JOptionPane.showInputDialog(null,
+                                            "Bienvenido al Menu de RRHH, que desea realizar?",
+                                            "",
+                                            null,
+                                            op,
+                                            op[0]);
+
+                                switch (op) {
+
+                                    case "Agregar Trabajador":
+                                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del trabajador a añadir");
+                                        String apellido = JOptionPane.showInputDialog("Ingrese el apellido del trabajador a añadir");
+
+                                        if (verifica.VerificarAgregarT(nombre,apellido)){
+                                            JOptionPane.showMessageDialog(null, "Trabajador guardado correctamente");
+                                        }else{
+                                            JOptionPane.showMessageDialog(null, "Error");
+                                        }
+                                        break;
+
+                                    case "Mostrar Trabajador":
+                                        if (verifica.verificaListaT().isEmpty()){
+                                            JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay usuarios");
+                                        }else{
+                                            JOptionPane.showMessageDialog(null, verifica.verificaListaT());
+                                        }
+                                        break;
+
+                                    case "Eliminar Trabajador":
+                                        String[] opcionesEliminar = new String[verifica.verificaListaT().size()];
+                                        for (int i = 0; i <verifica.verificaListaT().size();i++){
+                                            opcionesEliminar[i] = Integer.toString(verifica.verificaListaT().get(i).getIdTrabajador());
+                                        }
+
+                                        op = (String)JOptionPane.showInputDialog(null,
+                                                "Opciones",
+                                                "",
+                                                JOptionPane.DEFAULT_OPTION,
+                                                null,
+                                                opcionesEliminar,
+                                                opcionesEliminar[0]);
+                                        int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Trabajador que desea eliminar"));
+                                        if (verifica.EliminarT(Integer.parseInt(op))){
+                                            JOptionPane.showMessageDialog(null,"Se elimino exitosamente");
+                                        }else{
+                                            JOptionPane.showMessageDialog(null,"No se pudo eliminar");
+                                        }
+                                        break;
+
+                                    case "Editar Trabajador":
+                                        if (verifica.verificaListaT().isEmpty()){
+                                            JOptionPane.showMessageDialog(null, "No hay elementos para editar");
+                                        }else{
+                                            String[] opcioness = new String[verifica.verificaListaT().size()];
+                                            for (int i = 0; i <verifica.verificaListaT().size(); i++){
+                                                opcioness[i] = Integer.toString(verifica.verificaListaT().get(i).getIdTrabajador());
+                                            }
+
+                                            id = Integer.parseInt((String)JOptionPane.showInputDialog(null,
+                                                    "Ingrese el ID",
+                                                    "",
+                                                    JOptionPane.DEFAULT_OPTION,
+                                                    null,
+                                                    opcioness,
+                                                    opcioness[0]));
+                                            System.out.println(id);
+                                            for (Recursoshumanos recursoshumanos: verifica.verificaListaT()) {
+                                                if (recursoshumanos.getIdTrabajador()==id){
+                                                    JOptionPane.showMessageDialog(null,recursoshumanos);
+                                                }
+                                            }
+                                            if (verifica.EditarT(id)){
+                                                JOptionPane.showMessageDialog(null, "Se edito exitosamente el Trabajador con ID" + id);
+                                                for (Recursoshumanos recursoshumanos: verifica.verificaListaT()){
+                                                    if (recursoshumanos.getIdTrabajador() == id) {
+                                                        JOptionPane.showMessageDialog(null, recursoshumanos);
+                                                    }
+
+                                                }
+
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "No se pudo editar ID");
+                                            }
+                                        }
+                                        break;
+
+                                    case "Salir":
+                                        break;
+                                    default:
+                                        break;
+
+                        }
+                        opRrhh= Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier número para continuar"));
+                    } while (opRrhh != 1);
+                                break;
 
                 case 3:
                     // if (Ingreso Maestro mayor de obra is true) {
