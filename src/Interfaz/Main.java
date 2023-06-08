@@ -91,7 +91,7 @@ public class Main {
                 case 2:
                     int opRrhh = 0;
 
-                    String[] opciones = new String[]{"Modificaciones en el area de RRHH", "Modificaciones en el area de Administracion", "Modificaciones en el area de Operario", "Salir"};
+                    String[] opciones = new String[]{"Modificaciones en el area de RRHH", "Modificaciones en el area de Administracion", "Modificaciones en el area de Operario"};
                     String opcion;
 
                     do {
@@ -107,16 +107,11 @@ public class Main {
                         }
 
                             case "Modificaciones en el area de RRHH":
-                                String[] op = new String[]{"Agregar trabajador", "Mostrar trabajador", "Eliminar trabajador", "Editar trabajador", "Salir"};
-                                String op;
+                                String[] opci = new String[]{"Agregar trabajador", "Mostrar trabajador", "Eliminar trabajador", "Editar trabajador", "Salir"};
+                                String opcio;
 
                                 do {
-                                    op = (String) JOptionPane.showInputDialog(null,
-                                            "Bienvenido al Menu de RRHH, que desea realizar?",
-                                            "",
-                                            null,
-                                            op,
-                                            op[0]);
+                                    opcio = (String) JOptionPane.showInputDialog(null, "Bienvenido al Menu de RRHH, que desea realizar?", "", null, opci, opci[0]);
 
                                 switch (op) {
 
@@ -145,7 +140,7 @@ public class Main {
                                             opcionesEliminar[i] = Integer.toString(verifica.verificaListaT().get(i).getIdTrabajador());
                                         }
 
-                                        op = (String)JOptionPane.showInputDialog(null,
+                                        opcio = (String)JOptionPane.showInputDialog(null,
                                                 "Opciones",
                                                 "",
                                                 JOptionPane.DEFAULT_OPTION,
@@ -153,7 +148,7 @@ public class Main {
                                                 opcionesEliminar,
                                                 opcionesEliminar[0]);
                                         int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Trabajador que desea eliminar"));
-                                        if (verifica.EliminarT(Integer.parseInt(op))){
+                                        if (verifica.EliminarT(Integer.parseInt(opcio))){
                                             JOptionPane.showMessageDialog(null,"Se elimino exitosamente");
                                         }else{
                                             JOptionPane.showMessageDialog(null,"No se pudo eliminar");
@@ -195,9 +190,6 @@ public class Main {
                                                 JOptionPane.showMessageDialog(null, "No se pudo editar ID");
                                             }
                                         }
-                                        break;
-
-                                    case "Salir":
                                         break;
                                     default:
                                         break;
