@@ -1,5 +1,7 @@
 package Datos;
 
+import Interfaces.Interfaces;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Recursoshumanos {
+public class Recursoshumanos implements Interfaces {
 
 
         private int idTrabajador;
