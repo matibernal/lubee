@@ -19,6 +19,54 @@ public class Verifica {
 
      */
 
+<<<<<<< Updated upstream
+=======
+    public LinkedList<Recursoshumanos> verificaListaT(){
+        return nuevoTrabajador.Mostrar();
+    }
+
+    public boolean EliminarT(int idTrabajdor){
+        if (idTrabajdor >= 0) {
+            return nuevoTrabajador.Eliminar(idTrabajdor);
+        }else {
+            return false;
+        }
+    }
+
+    public boolean EditarT(int idTrabajador){
+        if (idTrabajador >= 0) {
+            return nuevoTrabajador.Editar(idTrabajador);
+        }else{
+            return false;
+        }
+    }
+
+    public boolean VerificarAgregarT (int idTrabajador, String nombre, String apellido, int idSector){
+        int flag = 0;
+        do {
+
+            if (nombre.length()>2 && nombre.length()<=15){
+                if (apellido.length()>=3){
+                    flag=1;
+                    nuevoTrabajador.setIdTrabajador(idTrabajador);
+                    nuevoTrabajador.setNombre(nombre);
+                    nuevoTrabajador.setApellido(apellido);
+                    nuevoTrabajador.setIdSector(idSector);
+                    nuevoTrabajador.Agregar();
+                    return true;
+
+                }else {
+                    apellido = JOptionPane.showInputDialog("Error al ingresar el apellido. Debe tener más de 3 caracteres " +
+                            "\n Ingrese el apellido del nuevo trabajador a añadir");                }
+            }else {
+                nombre = JOptionPane.showInputDialog("Error al ingresar el nombre. Debe tener entre 3 y 15 letras " +
+                        "\n Ingrese el nombre del nuevo trabajador a añadir");            }
+
+        }while(flag==0);
+        return false;
+    }
+
+>>>>>>> Stashed changes
 
     public boolean verificarEliminar(int id) {
         if(id>0) {
