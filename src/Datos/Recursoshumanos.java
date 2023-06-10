@@ -69,27 +69,26 @@ public class Recursoshumanos {
 
     @Override
     public String toString() {
-        return "Recursoshumanos{" +
+        return "Recursoshumanos: " +
                 "idTrabajador=" + idTrabajador +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", idSector=" + idSector +
-                '}';
+                "\n nombre='" + nombre + '\'' +
+                "\n apellido='" + apellido + '\'' +
+                "\n idSector=" + idSector;
     }
 
     Conexion con = new Conexion();
     Connection conexion = con.conectar();
     PreparedStatement stmt;
 
-    public boolean Guardar() {
-        String sql = "INSERT INTO `recursoshumanos`(`idtrabajador`, `nombre`, `apellido`, `idsector`) VALUES ('?','?','?','?')";
+    public boolean Agregar() {
+        String sql = "INSERT INTO `recursoshumanos`(`idtrabajador`, `nombre`, `apellido`, `idsector`) VALUES (?,?,?,?)";
 
         try{
             stmt = conexion.prepareStatement(sql);
-            stmt.setLong(1, this.getIdTrabajador());
+            stmt.setInt(1, this.getIdTrabajador());
             stmt.setString(2, this.getNombre());
             stmt.setString(3, this.getApellido());
-            stmt.setLong(4, this.getIdSector());
+            stmt.setInt(4, this.getIdSector());
             stmt.executeUpdate();
             return true;
 
@@ -103,7 +102,7 @@ public class Recursoshumanos {
     public LinkedList<Recursoshumanos> Mostrar() {
         String sql ="SELECT * FROM `recursoshumanos`";
 
-        String[] datos = new String[3];
+        String[] datos = new String[4];
 
         try {
 
@@ -127,7 +126,7 @@ public class Recursoshumanos {
     }
 
     public boolean Editar(int id) {
-        String sql = "UPDATE `recursoshumanos` SET `idtrabajador`='?',`nombre`='?',`apellido`='?',`idsector`='?' WHERE 1";
+        String sql = "UPDATE `recursoshumanos` SET `idtrabajador`=?,`nombre`=?,`apellido`=?,`idsector`=? WHERE 1";
 
         try{
             stmt = conexion.prepareStatement(sql);

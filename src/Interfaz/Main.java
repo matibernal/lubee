@@ -26,9 +26,10 @@ public class Main {
         LinkedList<proyecto_obra> ObrerosEnObra = new LinkedList<>();
         LinkedList<Obrero> listaObreros = new LinkedList<>();
         LinkedList<Operario> listaOperarios = new LinkedList<>();
+        LinkedList<Recursoshumanos> listaTrabajadores = new LinkedList<>();
         Verifica verifica = new Verifica();
 
-        Menu(Mati,  operario,  rrhh,  maestro,  material, maquinaria, obrero, plano, obra, listaProyectos, ObrerosEnObra, listaObreros, listaOperarios, verifica);
+        Menu(Mati,  operario,  rrhh,  maestro,  material, maquinaria, obrero, plano, obra, listaProyectos, ObrerosEnObra, listaObreros, listaOperarios, listaTrabajadores, verifica);
 
 
     }
@@ -36,7 +37,7 @@ public class Main {
     private static void Menu() {
     }
 
-    public static void Menu(Administrador admin, Operario operario, Recursoshumanos rrhh, Maestro_obra maestro, Materiales material, Maquinaria maquinaria, Obrero obrero, Plano plano, proyecto_obra obra, LinkedList<proyecto_obra> listaProyectos, LinkedList<proyecto_obra> ObrerosenObra, LinkedList<Obrero> listaObreros, LinkedList<Operario> listaOperarios, Verifica verifica) {
+    public static void Menu(Administrador admin, Operario operario, Recursoshumanos rrhh, Maestro_obra maestro, Materiales material, Maquinaria maquinaria, Obrero obrero, Plano plano, proyecto_obra obra, LinkedList<proyecto_obra> listaProyectos, LinkedList<proyecto_obra> ObrerosenObra, LinkedList<Obrero> listaObreros, LinkedList<Operario> listaOperarios, LinkedList<Recursoshumanos> listaTrabajadores, Verifica verifica) {
         JOptionPane.showMessageDialog(null, "  Bienvenido a LUBEE La empresa numero 1 en construcciones  ");
         int a = 0;
         do {
@@ -89,9 +90,15 @@ public class Main {
                     break;
 
                 case 2:
+                    listaTrabajadores=rrhh.Mostrar();
+
+                    if(rrhh.Ingreso()){
+                        JOptionPane.showMessageDialog(null, "Ingreso concecido");
+
+
                     int opRrhh = 0;
 
-                    String[] opciones = new String[]{"Modificaciones en el area de RRHH", "Modificaciones en el area de Administracion", "Modificaciones en el area de Operario"};
+                    String[] opciones = new String[]{"Modificaciones en el area de RRHH", "Modificaciones en el Area de Administracion", "Modificaciones en el Area de Operario"};
                     String opcion;
 
                     do {
@@ -104,34 +111,46 @@ public class Main {
                                 opciones[0]);
 
                         switch (opcion) {
-                            case "Modificaciones en el area de RRHH" -> {
+                            case "Modificaciones en el area de RRHH": {
                                 String[] opci = new String[]{"Agregar trabajador", "Mostrar trabajador", "Eliminar trabajador", "Editar trabajador", "Salir"};
                                 String opcio;
-                                do {
-                                    opcio = (String) JOptionPane.showInputDialog(null, "Bienvenido al Menu de RRHH, que desea realizar?", "", null, opci, opci[0]);
+                                    opcio = (String) JOptionPane.showInputDialog(null,
+                                            "Bienvenido al Menu de RRHH, que desea realizar?",
+                                            "",
+                                            JOptionPane.DEFAULT_OPTION,
+                                            null,
+                                            opci,
+                                            opci[0]);
 
-                                    switch (op) {
+                                    switch (opcio) {
 
-                                        case "Agregar Trabajador":
+                                        case "Agregar trabajador": {
+
+                                            int idTrabajdor = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del  nuevo trabaador"));
                                             String nombre = JOptionPane.showInputDialog("Ingrese el nombre del trabajador a añadir");
                                             String apellido = JOptionPane.showInputDialog("Ingrese el apellido del trabajador a añadir");
+                                            int idSector = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del  sector del trabajador"));
 
-                                            if (verifica.VerificarAgregarT(nombre, apellido)) {
+                                            if (verifica.VerificarAgregarT(idTrabajdor, nombre, apellido, idSector)) {
                                                 JOptionPane.showMessageDialog(null, "Trabajador guardado correctamente");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "Error");
                                             }
+                                        }
+
                                             break;
 
-                                        case "Mostrar Trabajador":
+                                        case "Mostrar trabajador":{
                                             if (verifica.verificaListaT().isEmpty()) {
                                                 JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay usuarios");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, verifica.verificaListaT());
                                             }
+
+                                        }
                                             break;
 
-                                        case "Eliminar Trabajador":
+                                        case "Eliminar Trabajador": {
                                             String[] opcionesEliminar = new String[verifica.verificaListaT().size()];
                                             for (int i = 0; i < verifica.verificaListaT().size(); i++) {
                                                 opcionesEliminar[i] = Integer.toString(verifica.verificaListaT().get(i).getIdTrabajador());
@@ -150,9 +169,11 @@ public class Main {
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
                                             }
+
+                                        }
                                             break;
 
-                                        case "Editar Trabajador":
+                                        case "Editar Trabajador":{
                                             if (verifica.verificaListaT().isEmpty()) {
                                                 JOptionPane.showMessageDialog(null, "No hay elementos para editar");
                                             } else {
@@ -161,7 +182,7 @@ public class Main {
                                                     opcioness[i] = Integer.toString(verifica.verificaListaT().get(i).getIdTrabajador());
                                                 }
 
-                                                id = Integer.parseInt((String) JOptionPane.showInputDialog(null,
+                                                int id = Integer.parseInt((String) JOptionPane.showInputDialog(null,
                                                         "Ingrese el ID",
                                                         "",
                                                         JOptionPane.DEFAULT_OPTION,
@@ -187,15 +208,46 @@ public class Main {
                                                     JOptionPane.showMessageDialog(null, "No se pudo editar ID");
                                                 }
                                             }
-                                            break;
-                                        default:
+
+                                        }
                                             break;
 
-                                    }
-                                    opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier número para continuar"));
-                                } while (opRrhh != 1);
+                                            default:
+                                            break;
+                                            }
                             }
-                            case 3 -> {
+
+
+                            break;
+
+                                case "Modificaciones en el Area de Administracion":{
+
+
+
+
+                                }
+                                    break;
+                                case "Modificaciones en el Area de Operario":{
+
+
+                                }
+                                    break;
+
+                                default:
+                                    break;
+
+                            }
+                            opRrhh = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Recursos Humanos. Cualquier número para continuar"));
+                            } while (opRrhh != 1);
+
+                    }
+                    break;
+
+
+
+
+
+                    case 3:
                                 // if (Ingreso Maestro mayor de obra is true) {
 
                                 int opcionmaestro = Integer.parseInt(JOptionPane.showInputDialog("Bienvenido al Menu de Maestro Mayor de Obra " +
@@ -249,8 +301,8 @@ public class Main {
 
 
                                 }
-                            }
-                            case 4 -> {
+
+                case 4:
                                 listaOperarios = operario.Mostrar();
                                 if (operario.Ingreso() == true) {
                                     JOptionPane.showMessageDialog(null, "Ingreso concedido");
@@ -374,9 +426,11 @@ public class Main {
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Validacion incorrecta main");
                                 }
-                            }
-                            default -> JOptionPane.showMessageDialog(null, "La opcion ingresada es incorrecta. Por favor ingrese una opcion valida");
-                        }
+
+            default: JOptionPane.showMessageDialog(null, "La opcion ingresada es incorrecta. Por favor ingrese una opcion valida");
+            break;
+        }
+
 
 
             a = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del sistema completo. Cualquier numero para continuar"));

@@ -41,25 +41,29 @@ public class Verifica {
         }
     }
 
-    public boolean VerificarAgregarT (String nombre, String apellido){
+    public boolean VerificarAgregarT (int idTrabajador, String nombre, String apellido, int idSector){
         int flag = 0;
         do {
-            if (nombre.length() >=3 && nombre.length() <= 15) {
-                if (apellido.length() >=3 && apellido.length()<=15) {
+
+            if (nombre.length()>2 && nombre.length()<=15){
+                if (apellido.length()>=3){
+                    flag=1;
+                    nuevoTrabajador.setIdTrabajador(idTrabajador);
                     nuevoTrabajador.setNombre(nombre);
                     nuevoTrabajador.setApellido(apellido);
-                    return nuevoTrabajador.Guardar();
+                    nuevoTrabajador.setIdSector(idSector);
+                    nuevoTrabajador.Agregar();
+                    return true;
 
-                }else{
-                    nombre = JOptionPane.showInputDialog("Error al ingresar el nombre. Debe tener entre 3 y 15 letras " +
-                            "\n Ingrese el nombre del nuevo trabajador a añadir");
+                }else {
+                    apellido = JOptionPane.showInputDialog("Error al ingresar el apellido debe tener entre 3 y 15 letras \n Ingrese el apellido de la nueva persona a añadir");
                 }
-            }else{
-                apellido = JOptionPane.showInputDialog("Error al ingresar el apellido. Debe tener más de 3 caracteres " +
-                        "\n Ingrese el apellido del nuevo trabajador a añadir");
+            }else {
+                nombre = JOptionPane.showInputDialog("Error al ingresar el nombre debe tener entre 3 y 15 letras \n Ingrese el nombre de la nueva persona a añadir");
             }
-        }while (0 == flag);
-        return nuevoTrabajador.Guardar();
+
+        }while(flag==0);
+        return false;
     }
 
 
