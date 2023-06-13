@@ -108,7 +108,12 @@ public class Main {
                                 String[] opci = new String[]{"Agregar trabajador", "Mostrar trabajador", "Eliminar trabajador", "Editar trabajador", "Salir"};
                                 String opcio;
                                 do {
-                                    opcio = (String) JOptionPane.showInputDialog(null, "Bienvenido al Menu de RRHH, que desea realizar?", "", null, opci, opci[0]);
+                                    opcio = (String)JOptionPane.showInputDialog(null,
+                                            "Bienvenido al Menu de RRHH, que desea realizar?",
+                                            "",
+                                            null,
+                                            opci,
+                                            opci[0]);
 
                                     switch (op) {
 
