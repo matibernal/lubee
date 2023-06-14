@@ -1,6 +1,9 @@
 package Datos;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +97,118 @@ public class Administrador{
             JOptionPane.showMessageDialog(null, "No se encontró un cliente con el ID ingresado.");
         }
     }
+    Conexion con = new Conexion();
+    Connection conexion = con.conectar();
+    PreparedStatement stmt;
+
+    public boolean AgregarA() {
+        String sql = "INSERT INTO `administrador`(`idUsuario`, `nombre`, `apellido`) VALUES (?,?,?)";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setInt(1, this.getIdUsuario());
+            stmt.setString(2, this.getNombre());
+            stmt.setString(3, this.getApellido());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
+
+    public List<Administrador> MostrarA() {
+        String sql ="SELECT * FROM `recursoshumanos`";
+
+        String[] datos = new String[4];
+
+        try {
+
+            stmt = conexion.prepareStatement(sql);
+            ResultSet result = stmt.executeQuery();
+            while(result.next()) {
+                datos[0]= String.valueOf(result.getInt(1));
+                datos[1]= result.getString(2);
+                datos[2]= result.getString(3);
+                listaAdministradores.add(new Administrador(Integer.parseInt(datos[0]),datos[1],datos[2]));
+            }
+
+            return listaAdministradores;
+
+        }catch(Exception excepcion){
+            System.out.println(excepcion.getMessage());
+            return null;
+        }
+
+    }
+
+    public boolean EditarA(int id) {
+        String sql = "UPDATE `administrador` SET `idUsuario`=?,`nombre`=?,`apellido`=? WHERE 1";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setLong(1, this.getIdUsuario());
+            stmt.setString(2, this.getNombre());
+            stmt.setString(3, this.getApellido());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
+
+    public boolean EliminarA(int id) {
+        String sql = "DELETE FROM `administrador` WHERE id = ?";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setLong(1, this.getIdUsuario());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
+
+
+    public boolean IngresoA() {
+        String ingresante;
+        int idi, a=0;
+
+        idi=Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID"));
+        ingresante=JOptionPane.showInputDialog("Ingrese su nombre");
+
+        if (!listaAdministradores.isEmpty()){
+            for (int i=0; i < listaAdministradores.size() ; i++){
+                if (listaAdministradores.get(i).getIdUsuario()==idi && listaAdministradores.get(i).getNombre().equalsIgnoreCase(ingresante)){
+                    a=1;
+                    i = listaAdministradores.size();
+                } else {
+                    a=0;
+                }
+            }
+
+
+        } else  {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia, no hay operarios");
+            a=0;
+        }
+
+        if (a==1){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
+
 
 }
 

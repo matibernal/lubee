@@ -45,7 +45,7 @@ public class Operario { //falta implementar interfaz y hacer guardar y eliminar 
         return apellido;
     }
 
-    public void setApelldio(String apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
@@ -59,7 +59,7 @@ public class Operario { //falta implementar interfaz y hacer guardar y eliminar 
     PreparedStatement stmt;
 
 
-    public LinkedList<Operario> Mostrar() {
+    public LinkedList<Operario> MostrarO() {
         String sql ="SELECT * FROM `operario`";
 
         String[] datos = new String[3];
@@ -84,9 +84,58 @@ public class Operario { //falta implementar interfaz y hacer guardar y eliminar 
 
         }
 
+    public boolean AgregarO() {
+        String sql = "INSERT INTO `operario`(`idOperario`, `nombre`, `apellido`) VALUES (?,?,?)";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setInt(1, this.getId());
+            stmt.setString(2, this.getNombre());
+            stmt.setString(3, this.getApellido());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
+
+    public boolean EditarO(int id) {
+        String sql = "UPDATE `administrador` SET `idoperario`=?,`nombre`=?,`apellido`=? WHERE 1";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setLong(1, this.getId());
+            stmt.setString(2, this.getNombre());
+            stmt.setString(3, this.getApellido());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
+
+    public boolean EliminarO(int id) {
+        String sql = "DELETE FROM `operario` WHERE id = ?";
+
+        try{
+            stmt = conexion.prepareStatement(sql);
+            stmt.setLong(1, this.getId());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion) {
+            System.out.println("Hubo un error" + excepcion.getMessage());
+            return false;
+        }
+    }
 
 
-    public boolean Ingreso() {
+
+    public boolean IngresoO() {
         String nombrei;
         int idi, a=0;
 
