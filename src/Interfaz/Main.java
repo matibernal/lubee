@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
 
         Administrador Mati = new Administrador(1, "Matías", "Bernal");
-        Cliente Gamaliel = new Cliente(0, 12345678, "Gamaliel", "Quiroz", "2346132");
         Operario operario = new Operario(0, "", "");
         Obrero obrero = new Obrero(0, "", "", true, 0);
         Maestro_obra maestro = new Maestro_obra("", 0, "", "", 0);
@@ -57,33 +56,200 @@ public class Main {
                             administradorEncontrado = administrador;
                             break;
                         }
+                        else{
+                            JOptionPane.showMessageDialog(null,"No se encontro ningún adminsitrador");
+                        }
                     }
 
                     if (administradorEncontrado != null) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido Datos.Administrador " + administradorEncontrado.getNombre() + " " + administradorEncontrado.getApellido());
-                        int opAdmnv = 0;
+                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador " + administradorEncontrado.getNombre() + " " + administradorEncontrado.getApellido());
+                        String[] opciones= { "Agregar un cliente","Ver lista de clientes", "Eliminar un cliente", "Editar datos de un cliente","Llamar a un cliente", "Salir" };
+                        String opAdm="";
                         do {
-                            int opAdm = Integer.parseInt(JOptionPane.showInputDialog("Ingrese lo que quiere usar " +
-                                    "\n 1- Llamar al cliente " +
-                                    "\n 2- Calcular el presupuesto" +
-                                    "\n 3- Crear un proyecto "));
-                            switch (opAdm) {
-                                case 1:
-                                    int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente a llamar:"));
-                                    administradorEncontrado.llamarCliente(idCliente);
+                            opAdm = (String)JOptionPane.showInputDialog(null, "Opciones de menu","",JOptionPane.DEFAULT_OPTION,null, opciones,opciones[0]);
+                            switch(opAdm) {
+                                case "Agregar un cliente":
+                                    String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
+                                    String apellido = JOptionPane.showInputDialog("Ingrese el apellido del cliente");
+                                    String dni = JOptionPane.showInputDialog("Ingrese el dni del cliente");
+                                    String numeroDeCelular = JOptionPane.showInputDialog("Ingrese el número de telefono del cliente");
+                                    if (verifica.verificarAñadirCliente(dni, nombre, apellido, numeroDeCelular)) {
+                                        JOptionPane.showMessageDialog(null, "Cliente guardado correctamente en el sistema");
+                                    }else {
+                                        JOptionPane.showMessageDialog(null, "Error");
+                                    }
                                     break;
-                                case 2:
-                                    administradorEncontrado.calcularPresupuesto();
+                                case "Ver lista de clientes":
+                                    if( verifica.verificaListaClientes().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                    }else {
+                                        JOptionPane.showMessageDialog(null, verifica.verificaListaClientes());
+                                    }
                                     break;
-                                case 3:
-                                    idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente para asignarle el proyecto"));
-                                    administradorEncontrado.crearProyecto(idCliente);
+                                case "Eliminar un cliente":
+                                    if( verifica.verificaListaClientes().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                    }else {
+                                        String [] opcionesEliminar = new String[verifica.verificaListaClientes().size()];
+                                        for (int i=0; i < verifica.verificaListaClientes().size();i++) {
+                                            opcionesEliminar[i] = verifica.verificaListaClientes().get(i).getApellido();
+                                        }
+                                        opAdm = (String)JOptionPane.showInputDialog(null, "Opciones del menu de eliminacion","",JOptionPane.DEFAULT_OPTION,null, opcionesEliminar,opcionesEliminar[0]);
+
+                                        if( verifica.EliminarCliente(opAdm)) {
+                                            JOptionPane.showMessageDialog(null, "Usted elimino al cliente con exito");
+                                        }else {
+                                            JOptionPane.showMessageDialog(null, "No se encontro ningun cliente o no se pudo eliminarlo");
+                                        }
+                                    }
                                     break;
+                                case "Editar datos de un cliente":
+                                    String [] opcionesEditar = new String[verifica.verificaListaClientes().size()];
+                                    String[] opeditar = {"Cambiar nombre", "Cambiar apellido", "Cambiar DNI", "Cambiar telefono", "Cancelar"};
+                                    String opEdit ="";
+                                    do{
+                                        opEdit =(String)JOptionPane.showInputDialog(null, "Opciones de edicion","Menu de edición",JOptionPane.DEFAULT_OPTION,null, opeditar,opeditar[0]);
+                                        switch (opEdit){
+
+                                            case "Cambiar nombre":
+                                                if( verifica.verificaListaClientes().isEmpty()) {
+                                                    JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                                }else{
+                                                    for (int i = 0; i < verifica.verificaListaClientes().size(); i++) {
+                                                        opcionesEditar[i] = verifica.verificaListaClientes().get(i).getApellido();
+                                                    }
+                                                    String apellidoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el cliente a editar", "",
+                                                            JOptionPane.DEFAULT_OPTION, null, opcionesEditar, opcionesEditar[0]);
+
+                                                    if (apellidoSeleccionado != null) {
+                                                        String nombreNuevo = JOptionPane.showInputDialog("Ingrese el nuevo nombre del cliente");
+                                                        if (verifica.verificarEditarNombre(apellidoSeleccionado, nombreNuevo)) {
+                                                            JOptionPane.showMessageDialog(null, "Cambio guardado correctamente en el sistema, usted cambio el nombre a: " + nombreNuevo);
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null, "Error: el cliente seleccionado no se encontró en la lista");
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "Error: no se seleccionó ningún cliente");
+                                                    }
+                                                }
+
+                                                break;
+
+                                            case "Cambiar apellido":
+                                                if( verifica.verificaListaClientes().isEmpty()) {
+                                                    JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                                }else{
+                                                    for (int i = 0; i < verifica.verificaListaClientes().size(); i++) {
+                                                        opcionesEditar[i] = verifica.verificaListaClientes().get(i).getApellido();
+                                                    }
+                                                    String apellidoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el cliente a editar", "",
+                                                            JOptionPane.DEFAULT_OPTION, null, opcionesEditar, opcionesEditar[0]);
+
+                                                    if (apellidoSeleccionado != null) {
+
+                                                        String apellidoNuevo = JOptionPane.showInputDialog("Ingrese el nuevo apellido del cliente");
+                                                        if (verifica.verificarEditarApellido(apellidoSeleccionado, apellidoNuevo)) {
+                                                            JOptionPane.showMessageDialog(null, "Cambio guardado correctamente en el sistema, usted cambio el apellido a: " + apellidoNuevo);
+                                                        }else {
+                                                            JOptionPane.showMessageDialog(null, "Error: el cliente seleccionado no se encontró en la lista");
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "Error: no se seleccionó ningún cliente");
+                                                    }
+                                                }
+                                                break;
+
+                                            case "Cambiar DNI":
+                                                if( verifica.verificaListaClientes().isEmpty()) {
+                                                    JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                                }else{
+                                                    for (int i = 0; i < verifica.verificaListaClientes().size(); i++) {
+                                                        opcionesEditar[i] = verifica.verificaListaClientes().get(i).getApellido();
+                                                    }
+                                                    String apellidoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el cliente a editar", "",
+                                                            JOptionPane.DEFAULT_OPTION, null, opcionesEditar, opcionesEditar[0]);
+
+                                                    if (apellidoSeleccionado != null) {
+
+                                                        String dniNuevo = JOptionPane.showInputDialog("Ingrese el DNI nuevo del cliente");
+                                                        if (verifica.verificarEditarDni(apellidoSeleccionado,dniNuevo)){
+                                                            JOptionPane.showMessageDialog(null, "Cambio guardado correctamente en el sistema, usted cambio el DNI a : " + dniNuevo);
+                                                        }else {
+                                                            JOptionPane.showMessageDialog(null, "Error: el cliente seleccionado no se encontró en la lista");
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "Error: no se seleccionó ningún cliente");
+                                                    }
+                                                }
+                                                break;
+
+                                            case "Cambiar telefono":
+                                                if( verifica.verificaListaClientes().isEmpty()) {
+                                                    JOptionPane.showMessageDialog(null, "Lista vacia, todavia no hay clientes en la empresa");
+                                                }else{
+                                                    for (int i = 0; i < verifica.verificaListaClientes().size(); i++) {
+                                                        opcionesEditar[i] = verifica.verificaListaClientes().get(i).getApellido();
+                                                    }
+                                                    String apellidoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el cliente a editar", "",
+                                                            JOptionPane.DEFAULT_OPTION, null, opcionesEditar, opcionesEditar[0]);
+
+                                                    if (apellidoSeleccionado != null) {
+
+                                                        String numeroDeCelularNuevo = JOptionPane.showInputDialog("Ingrese el nuevo telefono del cliente");
+                                                        if (verifica.verificarEditarTelefono(apellidoSeleccionado, numeroDeCelularNuevo)) {
+                                                            JOptionPane.showMessageDialog(null, "Cambio guardado correctamente en el sistema, usted cambio el telefono a: " + numeroDeCelularNuevo);
+                                                        }else {
+                                                            JOptionPane.showMessageDialog(null, "Error: el cliente seleccionado no se encontró en la lista");
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "Error: no se seleccionó ningún cliente");
+                                                    }
+                                                }
+                                                break;
+
+                                            case "Cancelar":
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+                                    }while(opEdit!="Cancelar");
+                                    break;
+
+                                case "Llamar a un cliente":
+                                    LinkedList<Cliente> telofonoClientes = verifica.verificaListaClientes();
+                                    String[] opcionesLlamado = new String[telofonoClientes.size()];
+
+                                    for (int i = 0; i < telofonoClientes.size(); i++) {
+                                        opcionesLlamado[i] = telofonoClientes.get(i).getApellido();
+                                    }
+                                    String apellidoSeleccionado = (String) JOptionPane.showInputDialog(null, "Opciones del menú de llamado", "", JOptionPane.DEFAULT_OPTION, null, opcionesLlamado, opcionesLlamado[0]);
+                                    Cliente clienteSeleccionado = null;
+
+                                    for (Cliente cliente : telofonoClientes) {
+                                        if (cliente.getApellido().equals(apellidoSeleccionado)) {
+                                            clienteSeleccionado = cliente;
+                                            break;
+                                        }
+                                    }
+                                    if (clienteSeleccionado != null && verifica.verificarCelular(clienteSeleccionado.getNumeroDeCelular())) {
+                                        JOptionPane.showMessageDialog(null, "Llamando al cliente: " + clienteSeleccionado.getApellido() + "\n\n\n" + "Numero de celular: " + clienteSeleccionado.getNumeroDeCelular());
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Ese cliente no tiene un teléfono válido");
+                                    }
+
+                                    break;
+
+
+                                case "Salir" :
+                                    break;
+
                                 default:
-                                    JOptionPane.showMessageDialog(null, "La opción ingresada es incorrecta. Por favor ingrese una opción valida");
+                                    break;
                             }
-                            opAdmnv = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 si desea salir del perfil de Datos.Administrador. Cualquier número para continuar"));
-                        } while (opAdmnv != 1);
+
+
+                        } while(!opAdm.equals("Salir" ));
                     } else {
                         JOptionPane.showMessageDialog(null, "No se encontró un administrador con el ID ingresado.");
                     }

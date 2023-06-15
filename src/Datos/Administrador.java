@@ -1,5 +1,4 @@
 package Datos;
-
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

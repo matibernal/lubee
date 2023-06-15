@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class Recursoshumanos implements Interfaces {
 
 
-        private int idTrabajador;
-        private String nombre;
-        private String apellido;
-        private int idSector;
-        private LinkedList<Recursoshumanos> listaTrabajadores = new LinkedList<>();
+    private int idTrabajador;
+    private String nombre;
+    private String apellido;
+    private int idSector;
+    private LinkedList<Recursoshumanos> listaTrabajadores = new LinkedList<>();
 
 
     public Recursoshumanos(int idTrabajador, String nombre, String apellido, int idSector) {

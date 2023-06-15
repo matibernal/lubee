@@ -13,7 +13,7 @@ public class Maestro_obra {
 	
 	private String nombre;
 	private int id_empleado;
-	private String contraseña;
+	private String contraseÃ±a;
 	private String sector_trabajo;
 	//private int cantidadobreros;
 	//private String Datos.Plano;
@@ -31,11 +31,11 @@ public class Maestro_obra {
 	public void setId_empleado(int id_empleado) {
 		this.id_empleado = id_empleado;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getContraseÃ±a() {
+		return contraseÃ±a;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseÃ±a(String contraseÃ±a) {
+		this.contraseÃ±a = contraseÃ±a;
 	}
 	public String getSector_trabajo() {
 		return sector_trabajo;
@@ -54,23 +54,23 @@ public class Maestro_obra {
 	//}
 	
 
-	public Maestro_obra(String nombre, int id_empleado, String contraseña, String sector_trabajo, int cantidadobreros) {
+	public Maestro_obra(String nombre, int id_empleado, String contraseÃ±a, String sector_trabajo, int cantidadobreros) {
 		super();
 		this.nombre = nombre;
 		this.id_empleado = id_empleado;
-		this.contraseña = contraseña;
+		this.contraseÃ±a = contraseÃ±a;
 		this.sector_trabajo = sector_trabajo;
 		//this.cantidadobreros = cantidadobreros;
 	}
 	
 	@Override
 	public String toString() {
-		return "Datos.Maestro_obra [nombre=" + nombre + ", id_empleado=" + id_empleado + ", contraseña=" + contraseña
+		return "Datos.Maestro_obra [nombre=" + nombre + ", id_empleado=" + id_empleado + ", contraseï¿½a=" + contraseÃ±a
 				+ ", sector_trabajo=" + sector_trabajo + "]";
 	}
 
-	public boolean Login(String nombre, String contraseña) {//login para entrar
-		if ( contraseña.equalsIgnoreCase(this.getContraseña())) {
+	public boolean Login(String nombre, String contraseÃ±a) {//login para entrar
+		if ( contraseÃ±a.equalsIgnoreCase(this.getContraseÃ±a())) {
 			return true;
 		}else {
 			return false;
