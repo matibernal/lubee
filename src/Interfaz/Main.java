@@ -37,17 +37,14 @@ public class Main {
     }
 
     public static void Menu(Administrador admin, Operario operario, Recursoshumanos rrhh, Maestro_obra maestro, Materiales material, Maquinaria maquinaria, Obrero obrero, Plano plano, proyecto_obra obra, LinkedList<proyecto_obra> listaProyectos, LinkedList<proyecto_obra> ObrerosenObra, LinkedList<Obrero> listaObreros, LinkedList<Operario> listaOperarios, LinkedList<Recursoshumanos> listaTrabajadores, Verifica verifica) {
-        JOptionPane.showMessageDialog(null, "  Bienvenido a LUBEE La empresa numero 1 en construcciones  ");
+        JOptionPane.showMessageDialog(null, "  Bienvenido a LUBEE La empresa numero 1 en construcciones", "LUBEE",JOptionPane.INFORMATION_MESSAGE);
         int a = 0;
+        String[] usuarios = {"Administrador", "Recursos Humanos", "Maestro Mayor de Obra", "Operario"};
+        String menuUsu= "";
         do {
-
-            int op = Integer.parseInt(JOptionPane.showInputDialog(" Ingrese la opcion correcta " +
-                    "\n Numero 1: si es Administrador " +
-                    "\n Numero 2: si es RRHH " +
-                    "\n Numero 3: Si es Maestro Mayor de Obra" +
-                    "\n Numero 4: si es Operario "));
-            switch (op) {
-                case 1:
+            menuUsu = (String)JOptionPane.showInputDialog(null,"Ingreso de usuario", "LUBEE",JOptionPane.DEFAULT_OPTION, null, usuarios,usuarios);
+            switch (menuUsu) {
+                case "Administrador":
                     int idAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de admin: "));
                     Administrador administradorEncontrado = null;
 
@@ -255,7 +252,7 @@ public class Main {
                     }
                     break;
 
-                case 2:
+                case "Recursos Humanos":
                     listaTrabajadores = rrhh.Mostrar();
 
                     if (rrhh.Ingreso()) {
@@ -618,7 +615,7 @@ public class Main {
                     }
 
 
-                case 3:
+                case "Maestro Mayor de Obra":
                     // if (Ingreso Maestro mayor de obra is true) {
 
                     int opcionmaestro = Integer.parseInt(JOptionPane.showInputDialog("Bienvenido al Menu de Maestro Mayor de Obra " +
@@ -673,7 +670,7 @@ public class Main {
 
                     }
 
-                case 4:
+                case "Operario":
                     listaOperarios = operario.MostrarO();
                     if (operario.IngresoO() == true) {
                         JOptionPane.showMessageDialog(null, "Ingreso concedido");
