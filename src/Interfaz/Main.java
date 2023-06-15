@@ -74,7 +74,7 @@ public class Main {
                                     String dni = JOptionPane.showInputDialog("Ingrese el dni del cliente");
                                     String numeroDeCelular = JOptionPane.showInputDialog("Ingrese el número de telefono del cliente");
                                     if (verifica.verificarAñadirCliente(dni, nombre, apellido, numeroDeCelular)) {
-                                        JOptionPane.showMessageDialog(null, "Cliente guardado correctamente en el sistema");
+                                        JOptionPane.showMessageDialog(null, "Cliente guardado correctamente en el sistema\n\nDatos guardados:\n\nNombre: " + nombre + "\nApellido: " + apellido + "\nDNI: " + dni + "\nTelefono: " + numeroDeCelular);
                                     }else {
                                         JOptionPane.showMessageDialog(null, "Error");
                                     }
