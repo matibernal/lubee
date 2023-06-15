@@ -148,14 +148,31 @@ public class Cliente{
         }
 
     }
-    public boolean EliminarCliente(String nombre) {
+    public boolean EliminarCliente(String apellido) {
 
-        String sql ="DELETE FROM `cliente` WHERE nombre = ?";
+        String sql ="DELETE FROM `cliente` WHERE apellido = ?";
 
         try {
 
             stmt = conexion.prepareStatement(sql);
-            stmt.setString(1, nombre);
+            stmt.setString(1, apellido);
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion){
+            System.out.println(excepcion.getMessage());
+            return false;
+        }
+    }
+    public boolean EditarClienteNombre(){
+
+        String sql = "UPDATE `cliente` SET nombre = ? WHERE idcliente = ?";
+
+        try{
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, getNombre());
+            stmt.setInt(2, getIdCliente());
             stmt.executeUpdate();
             return true;
 
@@ -165,8 +182,79 @@ public class Cliente{
         }
     }
 
+    public boolean EditarClienteApellido(){
+
+        String sql = "UPDATE `cliente` SET apellido = ? WHERE idcliente = ?";
+
+        try{
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, getApellido());
+            stmt.setInt(2, getIdCliente());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion){
+            System.out.println(excepcion.getMessage());
+            return false;
+        }
+    }
+
+    public boolean EditarClienteDni(){
+
+        String sql = "UPDATE `cliente` SET dni = ? WHERE idcliente = ?";
+
+        try{
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, getDni());
+            stmt.setInt(2, getIdCliente());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion){
+            System.out.println(excepcion.getMessage());
+            return false;
+        }
+    }
+    public boolean EditarClienteTelefono(){
+
+        String sql = "UPDATE `cliente` SET telefono = ? WHERE idcliente = ?";
+
+        try{
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, getNumeroDeCelular());
+            stmt.setInt(2, getIdCliente());
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception excepcion){
+            System.out.println(excepcion.getMessage());
+            return false;
+        }
+    }
+    public boolean TraerTelefono(String numeroDeCelular) {
+        String sql = "SELECT telefono FROM cliente WHERE telefono = ?";
+
+        try {
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, numeroDeCelular);
+            ResultSet result = stmt.executeQuery();
+
+            if (result.next()) {
+                return true;
+            }
+        } catch (Exception excepcion) {
+            System.out.println(excepcion.getMessage());
+        }
+
+        return false;
+    }
+
+
     @Override
     public String toString() {
-        return "Cliente Nro: " + getIdCliente() + " Nombre completo: " + getNombre() + " " + getApellido() + " DNI: "+ getDni() + "\n";
+        return "Cliente Nro: " + getIdCliente() + " Nombre completo: " + getNombre() + " " + getApellido() + " DNI: "+ getDni() + " Telefono: "+ getNumeroDeCelular() + "\n\n";
     }
 }

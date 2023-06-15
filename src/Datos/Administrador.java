@@ -1,11 +1,9 @@
 package Datos;
-
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-
 public class Administrador{
 
     private int idUsuario;
