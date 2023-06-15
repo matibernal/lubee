@@ -11,7 +11,8 @@ public class Verifica {
 
 
     Obrero nuevoobrero = new Obrero(0, "", "", true, 0);
-
+    Maquinaria nuevamaquinaria = new Maquinaria(0,"",true,"",0);
+    Materiales nuevomaterial = new Materiales (0,"",0,0);
     Recursoshumanos nuevoTrabajador = new Recursoshumanos(0, "", "", 0);
     Administrador nuevoAdmi = new Administrador(0,"","");
     Operario nuevoOpe = new Operario(0,"","");
@@ -197,6 +198,15 @@ public class Verifica {
 
     }
 
+    public boolean verificarEditar(Obrero obrero) {
+        if (obrero.getiIdobrero() > 0) {
+            obrero.EditarObrero(obrero);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //VERIFICACION DE CLIENTE
 
     Cliente nuevocliente = new Cliente(0,"","","","");
@@ -216,7 +226,7 @@ public class Verifica {
     }
 
 
-    public boolean verificarAñadirCliente(String dni, String nombre , String apellido, String numeroDeCelular) {
+    public boolean verificarAnadirCliente(String dni, String nombre , String apellido, String numeroDeCelular) {
         int flag=0;
         do {
             if (nombre.length()>=3 &&  nombre.length()<=15){
@@ -332,5 +342,57 @@ public class Verifica {
             return false;
         }
     }
+
+    //VERIFICA MAQUINARIA
+    public boolean verificarAgregarMaquinaria(int idmaquinaria, String tipo, boolean disponiblem, String patente, int cantidaddisponible) {
+        int dowhile = 0;
+        do {
+            if (patente.length() > 3 && patente.length() <= 6) {
+                    dowhile = 1;
+                    nuevamaquinaria.setIdmaquinaria(idmaquinaria);
+                    nuevamaquinaria.setTipo(tipo);
+                    nuevamaquinaria.setDisponible(disponiblem);
+                    nuevamaquinaria.setPatente(patente);
+                    nuevamaquinaria.setCantidadDisponible(cantidaddisponible);
+                    nuevamaquinaria.Agregar();
+                    return true;
+
+                } else {
+                    patente = JOptionPane.showInputDialog("Error al ingresar la patente debe tener entre 3 y 6 caracteres \n Ingrese la patente nuevamente");
+                }
+
+        } while (dowhile == 0);
+        return false;
+
+    }
+
+
+    //VERIFICA MATERIALES
+    public boolean verificarAgregarMaterial(int id,String nombre,  int cantidaddisp, double precio) {
+        int dowhile = 0;
+        do {
+
+            if (nombre.length() > 2 && nombre.length() <= 15) {
+                if (precio > 0) {
+                    dowhile = 1;
+                    nuevomaterial.setId(id);
+                    nuevomaterial.setNom(nombre);
+                    nuevomaterial.setCantidaddisp(cantidaddisp);
+                    nuevomaterial.setPrecio(precio);
+                    nuevomaterial.Agregar();
+                    return true;
+
+                } else {
+                    precio = Double.parseDouble(JOptionPane.showInputDialog("Error al ingresar el precio, debe tser mayor a 0 \n Ingrese el precio nuevamente"));
+                }
+            } else {
+                nombre = JOptionPane.showInputDialog("Error al ingresar el nombre debe tener entre 3 y 15 letras \n Ingrese el nombre de la nueva persona a añadir");
+            }
+
+        } while (dowhile == 0);
+        return false;
+
+    }
+
 
 }
