@@ -1,16 +1,27 @@
 package Datos;
 
+import Interfaces.Interfaces;
+
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
 
-public class Maquinaria {
-	
+public class Maquinaria implements Interfaces {
+	private int idmaquinaria;
 	private String tipo;
-	private boolean Disponible;
+	private boolean disponible;
 	private String patente;
-	private int CantidadDisponible;
+	private int cantidadDisponible;
 	private LinkedList<Maquinaria> listaMaquinarias;
-	
+
+
+	public int getIdmaquinaria() {
+		return idmaquinaria;
+	}
+	public void setIdmaquinaria(int idmaquinaria) {
+		idmaquinaria = idmaquinaria;
+	}
 	public String getTipo() {
 		return tipo;
 	}
@@ -18,10 +29,10 @@ public class Maquinaria {
 		this.tipo = tipo;
 	}
 	public boolean isDisponible() {
-		return Disponible;
+		return disponible;
 	}
 	public void setDisponible(boolean disponible) {
-		Disponible = disponible;
+		disponible = disponible;
 	}
 	public String getPatente() {
 		return patente;
@@ -32,28 +43,74 @@ public class Maquinaria {
 
 	
 	public int getCantidadDisponible() {
-		return CantidadDisponible;
+		return cantidadDisponible;
 	}
 	public void setCantidadDisponible(int cantidadDisponible) {
-		CantidadDisponible = cantidadDisponible;
+		cantidadDisponible = cantidadDisponible;
 	}
 	
 	
-	public Maquinaria(String tipo, boolean disponible, String patente, int cantidadDisponible) {
+	public Maquinaria(int idmaquinaria, String tipo, boolean disponible, String patente, int cantidadDisponible) {
 		super();
+		this.idmaquinaria = idmaquinaria;
 		this.tipo = tipo;
-		Disponible = disponible;
+		this.disponible = disponible;
 		this.patente = patente;
-		CantidadDisponible = cantidadDisponible;
+		this.cantidadDisponible = cantidadDisponible;
 	}
+
+	Conexion con = new Conexion();
+	Connection conexion = con.conectar();
+	PreparedStatement stmt;
 	
 	@Override
 	public String toString() {
-		return "Datos.Maquinaria [tipo=" + tipo + ", Disponible=" + Disponible + ", patente=" + patente
-				+ ", CantidadDisponible=" + CantidadDisponible + "]";
+		return "Maquinarias \n Id: " + idmaquinaria + " Tipo: " + tipo + ", Disponible: " + disponible + ", patente: " + patente
+				+ ", CantidadDisponible: " + cantidadDisponible ;
 	}
 
 
+	public boolean Agregar(){
+
+		String sql ="INSERT INTO `maquinaria`(`idmaquinaria`, `tipo`, `disponible`, `patente`, `cantidad`) VALUES (?,?,?,?,?)";
+
+		try {
+
+			stmt = conexion.prepareStatement(sql);
+			stmt.setInt(1, this.getIdmaquinaria());
+			stmt.setString(2, this.getTipo());
+			stmt.setBoolean(3, this.isDisponible());
+			stmt.setString(4, this.getPatente());
+			stmt.setInt(5, this.getCantidadDisponible());
+			stmt.executeUpdate();
+			return true;
+
+		}catch(Exception excepcion){
+			System.out.println(excepcion.getMessage());
+			return false;
+		}
+
+
+	}
+
+	public boolean Eliminar(int idmaquinaria) {
+
+		String sql ="DELETE FROM `maquinaria` WHERE idmaquinaria = ?";
+
+		try {
+
+			stmt = conexion.prepareStatement(sql);
+			stmt.setInt(1, idmaquinaria);
+			stmt.executeUpdate();
+			return true;
+
+		}catch(Exception excepcion){
+			System.out.println(excepcion.getMessage());
+			return false;
+		}
+	}
+
+	/*
 	public void AgregarMaquinaria() {
 		String tipoi, patentei, seguiragregando="";
 		boolean dispi;
@@ -90,6 +147,8 @@ public class Maquinaria {
 		} while (seguiragregando.equalsIgnoreCase("si"));
 
 	}
+
+	 */
 
 	public void solicitarMaquinarias() {
 		int cantidadi;

@@ -64,7 +64,7 @@ public class Obrero implements Interfaces {
 
 	@Override
 	public String toString() {
-		return "Obrero [nombre=" + nombre + ", apellidos=" + apellidos + ", disponible=" + disponible + "]";
+		return "Obrero \n Nombre: " + nombre + ", Apellido: " + apellidos + " Disponible: " + disponible + " Id obra asignada: " + id_obra ;
 	}
 
 	public boolean Agregar() {
@@ -121,35 +121,6 @@ public class Obrero implements Interfaces {
 	}
 
 
-/*
-	public LinkedList<Object> Mostrar() {
-		String sql ="SELECT * FROM `obrero`";
-
-		String[] datos = new String[5];
-		try {
-
-			stmt = conexion.prepareStatement(sql);
-			ResultSet result = stmt.executeQuery();
-			while(result.next()) {
-				datos[0]= String.valueOf(result.getInt(1));
-				datos[1]= result.getString(2);
-				datos[2]= result.getString(3);
-				datos[3]= String.valueOf(result.getBoolean(4));
-				datos[4]= String.valueOf(result.getInt(5));
-				listaObreros.add(new Obrero(Integer.parseInt(datos[0]),datos[1],datos[2],Boolean.parseBoolean(datos[3]) ,Integer.parseInt(datos[4])));
-			}
-
-			return listaObreros;
-
-		}catch(Exception excepcion){
-			System.out.println(excepcion.getMessage());
-			return null;
-		}
-
-	}
-
- */
-
 
 	public boolean Eliminar(int idobrero) {
 
@@ -167,24 +138,28 @@ public class Obrero implements Interfaces {
 			return false;
 		}
 	}
-/*
-	public boolean EditarPersona(int idobrero) {
 
-		String sql ="UPDATE `obrero` SET `idobrero`='?',`nombre`='?',`apellido`='?',`disponible`='?',`id_obra`='?' WHERE idobra = '?'";
+	public boolean EditarObrero(Obrero obrero) {
+
+		String sql ="UPDATE `obrero` SET idobrero= ?,nombre= ?,apellido= ?,disponible= ?,id_obra= ? WHERE idobrero = ?";
 
 		try {
 			stmt = conexion.prepareStatement(sql);
 			stmt.setInt(1, this.getiIdobrero());
+			stmt.setString(2, this.getNombre());
+			stmt.setString(3, this.getApellidos());
+			stmt.setBoolean(4, this.isDisponible());
+			stmt.setInt(5, this.getId_obra());
 			stmt.executeUpdate();
 			return true;
 
-		}catch(Exception excepcion){
-			System.out.println(excepcion.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
 
- */
+
 
 
 

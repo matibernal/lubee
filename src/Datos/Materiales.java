@@ -1,23 +1,29 @@
 package Datos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
 public class Materiales {
 		private String nom;
-		private int id, cantidaddisp;
+		private int id;
+		private int cantidaddisp;
 		private double precio;
-		private boolean disp;
-		private LinkedList<Materiales> listaMateriales;
+		LinkedList<Materiales> listaMateriales;
 
-	public Materiales(String nombre, int id, int cantidaddisp, double precio, boolean disp) {
-		this.nom = nom;
+	public Materiales(int id,String nombre,  int cantidaddisp, double precio) {
 		this.id = id;
+		this.nom = nom;
 		this.cantidaddisp = cantidaddisp;
 		this.precio = precio;
-		this.disp = disp;
+
 	}
+
+	Conexion con = new Conexion();
+	Connection conexion = con.conectar();
+	PreparedStatement stmt;
 
 	public String getNom() {
 		return nom;
@@ -51,27 +57,38 @@ public class Materiales {
 		this.precio = precio;
 	}
 
-	public boolean isDisp() {
-		return disp;
-	}
-
-	public void setDisp(boolean disp) {
-		this.disp = disp;
-	}
 
 	@Override
 	public String toString() {
-		return "Datos.Materiales{" +
-				"nombre='" + nom + '\'' +
-				", id=" + id +
+		return "Materiales: " +
+				"nombre: " + nom + '\'' +
+				", id: " + id +
 				", cantidaddisp=" + cantidaddisp +
-				", precio=" + precio +
-				", disponible=" + disp +
-				", listaMateriales=" + listaMateriales +
-				'}';
+				", precio=" + precio ;
 	}
 
+	public boolean Agregar(){
 
+		String sql= "INSERT INTO `materiales`(`idmaterial`, `nombre`, `cantidad`, `precio`) VALUES (?,?,?,?)";
+
+		try {
+
+			stmt = conexion.prepareStatement(sql);
+			stmt.setInt(1, this.getId());
+			stmt.setString(2, this.getNom());
+			stmt.setInt(3, this.getCantidaddisp());
+			stmt.setDouble(4, this.getPrecio());
+			stmt.executeUpdate();
+			return true;
+
+		}catch(Exception excepcion){
+			System.out.println(excepcion.getMessage());
+			return false;
+		}
+
+	}
+
+/*
 	public void AgregarMateriales() {
 		String nombrei, seguiragregando="";
 		boolean dispi;
@@ -112,6 +129,8 @@ public class Materiales {
 
 	}
 
+ */
+
 
 	public void SolicitarMateriales() {
 		int cantidadi, idi;
@@ -132,14 +151,9 @@ public class Materiales {
 				if (listaMateriales.get(i).getId()==idi){
 					if (listaMateriales.get(i).getCantidaddisp() >= cantidadi ) {
 						if (listaMateriales.get(i).getPrecio()==precioi){
-							if (listaMateriales.get(i).isDisp()){
 								JOptionPane.showMessageDialog(null, "Maquinarias solicitadas correctamente.");
 								materialesSolicitados.add(listaMateriales.get(i));
-								setDisp(false);
 								setCantidaddisp(getCantidaddisp() - cantidadi);
-							} else {
-								JOptionPane.showMessageDialog(null, "La maquina no esta disponible");
-							}
 						} else {
 							JOptionPane.showMessageDialog(null, "El precio no coincide con el de una maquina");
 						}
