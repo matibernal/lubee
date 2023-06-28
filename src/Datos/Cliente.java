@@ -114,6 +114,7 @@ public class Cliente{
             stmt.setString(4, this.getDni());
             stmt.setString(5,this.getNumeroDeCelular());
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -139,7 +140,7 @@ public class Cliente{
                 datos[4]= result.getString(5);
                 clientes.add(new Cliente(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3], datos[4]));
             }
-
+            conexion.close();
             return clientes;
 
         }catch(Exception excepcion){
@@ -157,6 +158,7 @@ public class Cliente{
             stmt = conexion.prepareStatement(sql);
             stmt.setString(1, apellido);
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -174,6 +176,7 @@ public class Cliente{
             stmt.setString(1, getNombre());
             stmt.setInt(2, getIdCliente());
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -192,6 +195,7 @@ public class Cliente{
             stmt.setString(1, getApellido());
             stmt.setInt(2, getIdCliente());
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -210,6 +214,7 @@ public class Cliente{
             stmt.setString(1, getDni());
             stmt.setInt(2, getIdCliente());
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -227,6 +232,7 @@ public class Cliente{
             stmt.setString(1, getNumeroDeCelular());
             stmt.setInt(2, getIdCliente());
             stmt.executeUpdate();
+            conexion.close();
             return true;
 
         }catch(Exception excepcion){
@@ -243,6 +249,7 @@ public class Cliente{
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
+                conexion.close();
                 return true;
             }
         } catch (Exception excepcion) {

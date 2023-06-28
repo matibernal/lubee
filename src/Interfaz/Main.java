@@ -45,8 +45,8 @@ public class Main {
             menuUsu = (String)JOptionPane.showInputDialog(null,"Ingreso de usuario", "LUBEE",JOptionPane.DEFAULT_OPTION, null, usuarios,usuarios);
             switch (menuUsu) {
                 case "Administrador":
-                    int idAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de admin: "));
-                    Administrador administradorEncontrado = null;
+                    String contraAdmin = JOptionPane.showInputDialog("Ingrese la contraseña para acceder como administrador");
+                    /*Administrador administradorEncontrado = null;
 
                     for (Administrador administrador : Administrador.getListaAdministradores()) {
                         if (idAdmin == administrador.getIdUsuario()) {
@@ -56,10 +56,10 @@ public class Main {
                         else{
                             JOptionPane.showMessageDialog(null,"No se encontro ningún adminsitrador");
                         }
-                    }
+                    }*/
 
-                    if (administradorEncontrado != null) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador " + administradorEncontrado.getNombre() + " " + administradorEncontrado.getApellido());
+                    if (contraAdmin.equals(admin.getContrasena())) {
+                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador ");
                         String[] opciones= { "Agregar un cliente","Ver lista de clientes", "Eliminar un cliente", "Editar datos de un cliente","Llamar a un cliente", "Salir" };
                         String opAdm="";
                         do {
@@ -248,7 +248,7 @@ public class Main {
 
                         } while(!opAdm.equals("Salir" ));
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se encontró un administrador con el ID ingresado.");
+                        JOptionPane.showMessageDialog(null, "La contraseña ingresada no es válida.");
                     }
                     break;
 

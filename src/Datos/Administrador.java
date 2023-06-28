@@ -11,6 +11,7 @@ public class Administrador{
     private int idUsuario;
     private String nombre;
     private String apellido;
+    private String contrasena = "admin1234";
     private static List<Administrador> listaAdministradores = new ArrayList<>();
 
     public Administrador(int idUsuario, String nombre, String apellido) {
@@ -48,6 +49,12 @@ public class Administrador{
         return listaAdministradores;
     }
 
+    public String getContrasena(){
+        return contrasena;
+    }
+    public void setContrasena(){
+        this.contrasena = contrasena;
+    }
     public void llamarCliente(int idCliente) {
 
         Cliente cliente = buscarClienteId(idCliente);
